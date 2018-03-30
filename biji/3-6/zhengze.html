@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则</title>
+</head>
+<body>
+<!--<form action="">-->
+    <!--&lt;!&ndash;//验证身份证号码，且必须填写&ndash;&gt;-->
+    <!--<input type="text" required pattern="\d{17}(\d|x)">-->
+    <!--<input type="submit">-->
+<!--</form>-->
+</body>
+<script>
+    {
+        //验证扣扣号码 第一位1-9   长度是5-11位
+        let qqReg=/^[1-9]\d{4,10}$/;
+        console.log(qqReg.test("00000"));//false
+        console.log(qqReg.test("123213"));//true
+    }
+    {
+        //验证字符串是否可以成为合格的变量名  开始为字母、下划线、$,后边可以是字母、数字、下划线、$
+        let nameReg=/^[a-zA-Z_\$][a-zA-Z0-9_\$]*$/;
+        console.log(nameReg.test("1111"));//false
+        console.log(nameReg.test("A11"));//true
+    }
+    {
+        //颜色的验证
+        //#fff  #111  #123456   #abcdef   #aacc11   #FFF
+        let colorReg=/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+        console.log(colorReg.test("#12a"));//true
+        console.log(colorReg.test("#fff"));//true
+        console.log(colorReg.test("#123123"));//true
+        console.log(colorReg.test("#12345o"));//false
+    }
+    {
+    // let reg=new RegExp("uek");
+    // let reg2=/uek/;//在字符串中有uek三个相连的字符
+    // //test()该方法是用来判断字符串是否匹配当前正则
+    // let str="sfahshfssknuek";
+    // console.log(reg2.test(str));//true
+}
+{
+    // let str="1uek8";
+    // let reg=/^\duek\d$/;//表示开始结束都为数字、中间为uek的正则
+    // console.log(reg.test(str));//true
+}
+{
+    // console.clear();
+    // let str="uekcdjsuekjdbcksuek";
+    // let reg=/uek/g;
+    // console.log(reg.exec(str));
+    // console.log(reg.exec(str));
+    // console.log(reg.exec(str));
+    // console.log(reg.exec(str));
+}
+{
+    // let str="   u   e   k  ";
+    // console.log(str);
+    // str=str.replace(/^\s+/,"");//把开头的空格都去除
+    // console.log(str);
+    // str=str.replace(/\s+$/,"");//把结尾的空格都去除
+    // console.log(str);
+    // str=str.replace(/^\s*|\s*$/g);///把开始结尾的空格都去除
+    // str=str.replace(/\s/g);//替换所有
+}
+</script>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字数限制</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        #text {
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            border-bottom: 1px solid #ccc;
+            padding: 30px;
+            box-sizing: border-box;
+            font-weight: bold;
+            font-family: "Microsoft YaHei UI";
+        }
+        #text:focus {
+            outline: none;
+        }
+        #count {
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            right: 0;
+            bottom: 200px;
+        }
+        #submit {
+            width: 70px;
+            height: 30px;
+            background: skyblue;
+            margin: 0 auto;
+            font-size: 20px;
+            line-height: 30px;
+            color: #fff;
+            text-align: center;
+            user-select: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #showarea {
+            width: 100%;
+            border-top: 1px solid #ccc;
+            box-sizing: border-box;
+            height: 140px;
+            margin-top: 30px;
+            overflow: auto;
+        }
+        #showarea h3 {
+            font-size: 20px;
+            text-align: center;
+        }
+        #showarea p {
+            background: #888888;
+            padding: 5px 30px;
+            font-size: 15px;
+            position: relative;
+            line-height: 20px;
+        }
+        #showarea p span {
+            background: darkred;
+            cursor: pointer;
+            bottom: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: auto;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <textarea name="" id="text" placeholder="记录此刻心情"></textarea>
+    <div id="count"><span>40</span>/<span id="now">0</span></div>
+    <div id="submit">提交</div>
+    <div id="showarea">
+        <h3>show</h3>
+        <!--<p>内容 <span>删除</span></p>-->
+    </div>
+</div>
+</body>
+<script>
+    let textarea = document.querySelector("#text");
+    let now = document.querySelector("#now");
+    textarea.onkeyup = count;
+    textarea.onkeydown = count;
+
+    function count() {
+        let val = this.value;
+        let length = val.length;
+        if (length > 40) {
+            length = 40;
+            this.value = val.slice(0, 40);
+        }
+        now.innerHTML = length;
+    }
+
+    let submit = document.querySelector("#submit");
+    let showarea = document.querySelector("#showarea");
+    submit.onclick = submitHandler;
+
+    function getData() {
+        return localStorage.message ? JSON.parse(localStorage.message) : [];
+    }
+
+    function saveData(data) {
+        localStorage.message = JSON.stringify(data);
+    }
+
+    function render() {
+        let data = getData();
+        showarea.innerHTML = "<h3>show</h3>";
+        data.forEach(function (val, index) {
+            let newp = document.createElement("p");
+            newp.innerHTML = val + "<span id='index'>删除</span>"
+            showarea.appendChild(newp);
+
+        })
+    }
+
+    render();
+
+    function submitHandler() {
+        let val = textarea.value;
+        if (val === "") {
+            alert("请输入内容");
+            return;
+        }
+        textarea.value = "";
+        now.innerHTML = "0";
+        let data = getData();
+        data.push(val);
+        saveData(data);
+        render();
+    };
+    document.onkeydown = function (e) {
+        if (e.ctrlKey && e.keyCode === 13) {
+            submitHandler();
+        }
+    };
+    //tagName       nodeName--表示当前标签名 都是大写
+    showarea.onclick = function (e) {
+        let target = e.target;
+        if (target.nodeName === `SPAN`) {
+            let data = getData();
+            let index = target.id;
+            data.splice(index, 1);
+            saveData(data);
+            render();
+        }
+    };
+</script>
+</html>

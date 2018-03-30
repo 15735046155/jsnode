@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="d1">hello world</div>
+<input type="text" id="t"/>
+</body>
+<script>
+    var div1 = document.getElementById("d1");
+    var text_field = document.getElementById("t");
+    console.log(div1,text_field);
+    text_field.value = div1.parentElement;
+    console.log(text_field.value);
+
+</script>
+</html>

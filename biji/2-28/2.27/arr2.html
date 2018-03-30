@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //过滤  数组中的数值必须为0-100  把不不符合的过滤掉
+        // var arr=[89,56,12,0,-23,88,121,2323];
+        // var newarr=[];
+        //遍历  枚举   把过程做一遍
+        // var n=0;
+        // for(var i=0;i<arr.length;i++){
+        //     if(arr[i]>=0&&arr[i]<=100){
+        //         console.log(n);
+        //         newarr[n]=arr[i];
+        //      n++;
+        //   }
+        // }
+        // console.log(newarr);
+
+        //找出及格的
+        // var grade=[65,89,45,6,11,79,88,45,78,89,30];
+        // var arr1=[];
+        // var n=0;
+        // for(var i=1;i<grade.length;i++){
+        //     if(grade[i]>=60&&grade[i]<=100){
+        //         arr1[n]=grade[i];
+        //         n++;//只要有一个及格的n就自加一次。
+        //     }
+        // }
+        // console.log(arr1);
+        //
+        // //查找  最大
+        // var grade=[65,89,45,6,11,79,88,45,78,89,30];
+        // var max=0;
+        // for(var i=0;i<grade.length;i++){
+        //     if(grade[i]>max){
+        //        max= grade[i];
+        //     }
+        // }
+        // console.log(max);
+        //
+        // //判断是否有人不及格
+        // var fail=false;
+        // for(var i=0;i<grade.length;i++){
+        //     if(grade[i]<60){
+        //         fail=true;
+        //     }
+        // }
+        // console.log(fail);
+        //
+        // //判断是否每个人都及格
+        // var success=true;
+        // for(var i=0;i<grade.length;i++){
+        //     if(grade[i]<60){
+        //         success=false;
+        //     }
+        // }
+        // console.log(success);
+
+
+
+        //对数组中数据排序  从大到小  选择排序法
+        // var temp=grade[0];
+        // grade[0]=grade[1];
+        // grade[1]=temp;
+
+        // var a=1;
+        // var b=2;
+        // a=a+b;
+        // b=a-b;
+        // a=a-b;
+        // var grade=[65,89,45,6,11,79,88,45,78,89,30];
+        // for(var i=0;i<grade.length;i++){
+        //     for(var j=i;j<grade.length;j++){
+        //         if(grade[i]<grade[j]){
+        //             var temp=grade[i];
+        //             grade[i]=grade[j];
+        //             grade[j]=temp;
+        //         }
+        //     }
+        // }
+        // console.log(grade);
+
+        //冒泡排序法
+        // var grade=[65,89,45,6,11,79,88,45,78,89,30];
+        // for(var i=0;i<grade.length;i++){
+        //     for(var j=0;j<grade.length-1-i;j++){
+        //         if(grade[j]<grade[j+1]){
+        //             var temp=grade[j];
+        //             grade[j]=grade[j+1];
+        //             grade[j+1]=temp;
+        //         }
+        //     }
+        // }
+        // console.log(grade);
+
+        //去掉数组的重复值
+        // var fruit=["apple","banana","orange","apple"];
+        // var newarr=[];
+        // var n=0;
+        // for(var i=0;i<fruit.length;i++){
+        //     if(!check(newarr,fruit[i])){
+        //         newarr[n]=fruit[i];
+        //         n++;
+        //     }
+        // }
+        // function check(arr,val) {
+        //     var status=false;
+        //     for (var i=0;i<arr.length;i++){
+        //         if(arr[i]===val){
+        //             status=true;
+        //         }
+        //     }
+        //     return status;
+        // }
+        // console.log(newarr);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

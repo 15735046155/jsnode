@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 400px;
+            background-color: blue;
+            margin:0 auto;
+        }
+        .item{
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            font-size: 20px;
+            color:#fff;
+        }
+        .item2{
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            font-size: 20px;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</div>
+<div class="item2">5</div>
+</body>
+<script>
+    let box=document.querySelector(".box");
+    let item2=box.lastChild;
+    let item1=box.firstElementChild;//获取box的第一个元素
+    let newdiv=document.createElement("div");//创建一个新的div
+    newdiv.className="item";
+    newdiv.innerHTML="4";
+    box.appendChild(newdiv);//将新的div插入到box中
+    box.insertBefore(newdiv,item1);//将新的div插入到box中第一个元素之前
+    box.insertBefore(item2,newdiv)//将页面中已有的item2插到newdiv之前   结果相当于剪切
+
+    //createDocumentFregment()创建一个文档片段
+       // let f=document.createDocumentFragment();
+    // for(i=0;i<100;i++){
+    //     let newdiv=document.createElement("div");
+    //     newdiv.className="item";
+    //     f.appendChild(newdiv);
+    // }
+    // document.body.appendChild(f);
+
+    let newdiv2=document.createElement("div");
+    newdiv2.className="item";
+    newdiv2.innerHTML="5";
+    box.replaceChild(newdiv2,item1);//把box中的item1替换为newdiv2
+
+
+    // a.removeChild(b);//把a的子元素b删除掉，只删掉了文档中的，js中还存在，如果想在js中删掉，b=null即可。
+
+    //引用类型传递的是地址，初始类型传递的数值
+    //引用类型例子
+    let obj={name:"zhangsan"};
+    let obj2=obj;
+    obj2.name="lisi";
+    console.log(obj2);//lisi
+    //初始类型例子
+    let a=1;
+    let b=a;
+    b=2;
+    console.log(a);//1
+
+    //a.cloneNode()  克隆一个a 对象
+    let newbox=box.cloneNode();//只克隆一个盒子，没内容
+    document.body.appendChild(newbox);
+    let newbox1=box.cloneNode(true);//克隆盒子以及内容
+    document.body.appendChild(newbox1);
+
+</script>
+</html>

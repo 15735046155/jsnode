@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业</title>
+</head>
+<body>
+
+</body>
+<script>
+    //小米的效果
+    //banner效果:点击轮播点时，轮播点有点击效果，图片会相应的切换，然后是点击箭头时图片会相应的出现，此时的轮播点也会相应改变。出去点击事件，banner图还会自动轮播，并且不能切换太快，自动轮播时轮播点也会切换。
+    {
+        let imgs = document.querySelectorAll(".banner_img li");//获取banner图片
+        let pagers = document.querySelectorAll(".banner_lunbo li");//获取轮播点
+        let banner = document.querySelector("#banner");
+        let next = document.querySelector(".next");
+        let prev = document.querySelector(".prev");
+        pagers.forEach(function (ele, index) {//遍历轮播点
+            ele.onclick = function () {//给轮播点添加点击事件
+                //使用循环清除当前图片和轮播点的active效果
+                for (var i = 0; i < imgs.length; i++) {
+                    imgs[i].classList.remove("active");
+                    pagers[i].classList.remove("active");
+                }
+                //this ele  pagers[index]
+                //给当前index个图片和轮播点添加效果
+                this.classList.add("active");
+                imgs[index].classList.add("active");
+                n = index;
+            }
+        });
+        //自动轮播
+        let n = 0;
+        let t = setInterval(move, 3000);//设置一个时间函数，里边接受一个回调函数move，时间间隔为3s
+        function move() {
+            n++;
+            if (n === imgs.length) {
+                n = 0;
+            }
+            if (n < 0) {
+                n = imgs.length - 1;
+            }
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].classList.remove("active");
+                pagers[i].classList.remove("active");
+            }
+            imgs[n].classList.add("active");
+            pagers[n].classList.add("active");
+        }
+
+        //鼠标移入暂停
+        banner.onmouseenter = function () {
+            clearInterval(t);//停止自动轮播
+        };
+        //s鼠标离开继续自动翻页
+        banner.onmouseleave = function () {
+            t = setInterval(move, 3000)
+        };
+        //点击切换下一张
+        let flag = true;
+        next.onclick = function () {//给next添加点击事件
+            if (flag) {//如果flag为真执行花括号内
+                flag = false;
+                move();
+            }
+        };
+        //点击切换上一张
+        prev.onclick = function () {
+            if (flag) {
+                flag = false;
+                n = n - 2;
+                move();
+            }
+        };
+        //遍历banner图，添加一个动画完成监听事件，防止点击过快banner图展示不完全就切换下一张
+        imgs.forEach(function (ele, index) {
+            ele.addEventListener("transitionend", function () {
+                flag = true;
+            })
+        })
+    }
+
+    //明星单品效果
+    //默认效果展示第一屏，所以左箭头disable，智能翻两次，到了第三屏的时候，相应的箭头自动切换为禁止状态。
+    {
+        const prev = document.querySelector(".danpin_btn_prev");//获取上一个箭头
+        const next = document.querySelector(".danpin_btn_next");//获取下一个箭头
+        const inner = document.querySelector(".danpin_xia_inner");//获取inner
+        let n = 0;//n代表往左移动几屏
+        next.onclick = function () {
+            n++;
+            prev.classList.remove("disable");//左边的箭头取消不能点击
+            //设置智能翻三屏，即点击两下，如果n=2的时候，就把右边箭头设置禁止点击
+            if (n === 2) {
+                this.classList.add("disable");
+            }
+            //如果n=3的时候，让其停留在n = 2的时候，用return终止
+            if (n === 3) {
+                n = 2;
+                return;
+            }
+            inner.style.marginLeft = -1240 * n + "px";//点击一次向左移动一屏
+        };
+        //给左箭头设置一个点击效果
+        prev.onclick = function () {
+            n--;//点击一次n减一次
+            next.classList.remove("disable");//右边的兼有取消不能点击
+            //n=0的时候，不能向左走
+            if (n === 0) {
+                prev.classList.add("disable");
+            }
+            if (n === -1) {//n=-1的时候让其=0，用return终止
+                n = 0;
+                return;
+            }
+            inner.style.marginLeft = -1240 * n + "px";//点击一次向右移动一屏
+        }
+    }
+
+    //楼层效果
+    //点击左边的导航会跳转到相应的内容模块，鼠标在模块上滑动时，左侧导航会相应的改变，点击回到顶部按钮，内容直接回到最顶部
+    {   //获取左侧导航文字和要显示的内容
+        let tips = document.querySelectorAll(".sidebar_li");
+        let containers = document.querySelectorAll(".container");
+        let top = document.querySelector(".fanhui");//获取返回顶部按钮
+        //遍历左侧文字
+        tips.forEach(function (ele, index) {
+            ele.onclick = function () {//给左侧文字添加点击事件
+                let ot = containers[index].offsetTop - 50;//获取当前模块到文档顶部的距离，-50是为了不让模块的顶部紧挨着浏览器的顶部。
+                let now = document.documentElement.scrollTop;//获取当前文档超出的窗口的距离
+                let speed = (ot - now) / 8;
+                let time = 0;
+                let t = setInterval(function () {
+                    time += 25;
+                    now += speed;
+                    if (time === 200) {
+                        clearInterval(t);
+                    }
+                    document.documentElement.scrollTop = now;
+                }, 25)
+            }
+        });
+        //添加一个滚动的监听事件，当i<10并且文档滚动的距离加上100大于当前模块距离文档的距离的时候，就给文字先移除默认效果，再给加上。
+        window.addEventListener("scroll", function () {
+            let st = document.documentElement.scrollTop;
+            for (let i = 0; i < containers.length; i++) {
+                if (st > containers[i].offsetTop - 100) {
+                    for (let i = 0; i < tips.length; i++) {
+                        tips[i].classList.remove("sidebar_li_active");
+                    }
+                    tips[i].classList.add("sidebar_li_active");
+                }
+            }
+        })
+    }
+    //侧导航返回顶端
+    //利用setInterval函数、滚轮监听事件和点击事件结合实现返回顶部的效果
+    {   //获取犯规顶部的按钮
+        let top = document.querySelector(".fanhui");
+        top.onclick = function () {//添加点击事件
+            let st = document.documentElement.scrollTop;//获取当前的scrolltop值
+            //利用setInterval函数没25毫秒让其上移200像素，直到当前的scrolltop值为0的时候停止执行setInterval函数。如果不停止就会出现滚轮拉不下来的效果
+            let t = setInterval(function () {
+                st -= 200;//没25毫秒上移200px
+                //判断scrolltop值是否为0
+                if (st < 0) {
+                    st = 0;
+                    clearInterval(t);//<0的时候让其等于0，并且停止执行时间函数
+                }
+                document.documentElement.scrollTop = st;
+            }, 25)
+        }
+    }
+
+</script>
+
+<!--//留言板效果-->
+<!--//在文本框中输入内容，并且只能输入40个，提交可以在展示区域接受，提交内容不能为空，为空时提示请输入文字，可以点击按钮提交，也可以按Ctrl和回车提交，提交的内容利用事件流可以实现删除效果。-->
+<script>
+    //获取文本框和当前字数
+    let textarea=document.querySelector("#text");
+    let now=document.querySelector("#now");
+    //利用onkeydown、onkeyup实现按一下键盘抬起后，会自动计数。
+    textarea.onkeydown=count;
+    textarea.onkeyup=count;
+    //写一个计数的函数来计算当前的文字的个数
+    function count() {
+        let value=this.value;//获取当前的文字
+        let length=value.length;//把当前文字的字数赋值给length
+        if(length>40){//判断当前个数。当个数>40的时候，就让count=40；
+            length=40;
+            this.value=value.slice(0,40);//把这40个字赋值给文本框，从下标为0的数字开始，截取长度为40的文本
+        }
+        now.innerHTML=length;//当前的数字等于当前的长度
+    }
+    //获取提交按钮和内容
+    let btn=document.querySelector("#btn");
+    let showarea=document.querySelector(".showarea");
+    btn.onclick=submit;//给按钮添加点击事件submit
+    function submit() {
+        let val=textarea.value;//把文本框的内容赋值给val
+        //当内容为空的时候，点击提交提示请输入内容，然后用return终止，并且让文本框的内容为空，当前的数字也为0，
+        if(val===""){
+            alert("请输入内容");
+            return;
+        }
+        textarea.value="";
+        now.innerHTML="0";
+        //创建一个p标签
+        let newmassage=document.createElement("p");
+        //p标签的内容为文本框中的内容，在连接上一个删除span标签
+        newmassage.innerHTML=val+"<span>删除</span>";
+        showarea.appendChild(newmassage);//把p标签添加到展示区域
+    }
+    //当同时按下Ctrl和回车键的时候也可以提交
+    window.onkeydown=function (e) {
+        if(e.ctrlKey&&e.keyCode===13){
+            submit();
+        }
+    };
+    //删除  tagName和nodeName  获取标签名
+    //利用事件流来执行删除事件
+    showarea.onclick=function (e) {
+        let a=e.target;
+        if(a.nodeName==="SPAN"){
+            showarea.removeChild(a.parentNode);
+        }
+    }
+</script>
+<!--标签云-->
+<!--写一组数组，让其在页面中随机分布，并位置不能重复，让其从右向左循环移动-->
+<script>
+    let arr = ["html", "css", "javascript", "vue", "bootstrap", "Nodejs", "php", "mysql", "express", "Antd", "HTTP", "TCP/IP", "MVC"];
+    let docf = document.createDocumentFragment();//定义一个片段
+    //获取随机的颜色
+    function getColor() {
+        let colorArr = ["6", "9", "c", "3"];
+        let str = "#";
+        for (let i = 0; i < 3; i++) {
+            str += colorArr[Math.floor(Math.random() * colorArr.length)]
+        }
+        return str;
+    }
+    //判断是否有重叠的，有重叠的就重新获取位置
+    function checkPos(l,t) {
+        for(let i=0;i<pos.length;i++){
+            let p=pos[i];
+            if(l>p.l-100&&l<p.l+100&&t>p.t-100&&t<p.t+100){
+                return true;
+            }
+        }
+        return false;
+    }
+    let pos = [];
+    let divArr=arr.map(function (value) {
+        let newdiv = document.createElement("div");//创建一个新的div
+        let randomLeft, randomTop;//定义随机的左距离和上距离
+        do {
+            randomLeft = (window.innerWidth - 100) * Math.random();//随机距离左边的距离
+            randomTop = (window.innerHeight - 100) * Math.random();//随机距离右边的距离
+        } while (checkPos(randomLeft, randomTop));//利用检查函数检查，是否有重叠的位置
+        pos.push({l: randomLeft,t: randomTop});//把符合的添加到数组POS中
+        //给newdiv设置css样式
+        newdiv.style.cssText = `width:100px;height:100px;background:${getColor()};position:absolute;left:${randomLeft}px;top:${randomTop}px;text-align:center;border-radius:50%;line-height:100px;color:#111;font-size:18px;`;
+        //给newdiv设置内容
+        newdiv.innerHTML = value;
+        //将newdiv添加到片段中
+        docf.appendChild(newdiv);
+        return newdiv;//返回newdiv
+    });
+    //获取个人主页
+    let scene = document.querySelector(".scene");
+    scene.appendChild(docf);//将片段添加到个人主页
+
+    //移动效果
+    //利用时间函数来制作动画
+    setInterval(function () {
+        divArr.forEach(function (ele,index) {//遍历divArr
+            pos[index].l-=1;//每个元素距离左边的距离在执行一次时间函数的时候减1
+            //限制条件   当元素从左边出去后，就让他距离左边的距离为浏览器的宽度
+            if(pos[index].l<-100){
+                pos[index].l=window.innerWidth;
+            }
+            ele.style.left=pos[index].l+"px";//将当前元素距离左边的距离赋值给divArr的左边距离
+        })
+    })
+
+</script>
+</html>

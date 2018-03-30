@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //es6
+        //fill方法  对数组中的内容快速填充
+        // var arr=new Array(10);
+        // arr.fill(0);
+        // console.log(arr);//长度为10的数值，里边有10个0的数组
+
+
+        //find 根据设置的条件进行查找对象
+        var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:80},{name:"wang",grade:70}];
+        var obj=grade.find(function (val,index) {
+            if(val.grade===80){
+                return true;
+            }
+        });
+        console.log(obj);//{name: "lisi", grade: 80}
+
+        //findIndex  查找对象所在位置的索引值
+        var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:80},{name:"wang",grade:70}];
+        var obj=grade.findIndex(function (val,index) {
+            if(val.grade===80){
+                return true;
+            }
+        });
+        console.log(obj);//1
+
+        //copyWithin  拷贝
+        // var arr=[1,2,3,4,5,6,7,8,9];
+        // arr.copyWithin(0,6); // 用789盖住123
+        // console.log(arr);
+
+        //includes  判断数组中是否存在某个值
+        // console.log(arr.includes(6));
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .inner{
+            transition: all 1s;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .section{
+            text-align: center;
+            font-size: 50px;
+        }
+        .pagerbox{
+            width: 30px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-content: space-around;
+            flex-wrap: wrap;
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            margin-top: -75px;
+        }
+        .pager{
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .pager.active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="inner">
+        <div class="section">1</div>
+        <div class="section">2</div>
+        <div class="section">3</div>
+        <div class="section">4</div>
+        <div class="section">5</div>
+    </div>
+    <div class="pagerbox">
+        <a href="#a" class="pager active"></a>
+        <a href="#b"  class="pager"></a>
+        <a href="#c"  class="pager"></a>
+        <a href="#d"  class="pager"></a>
+        <a href="#e"  class="pager"></a>
+    </div>
+</div>
+</body>
+<script>
+    let sections=document.querySelectorAll(".section");
+    let pagers=document.querySelectorAll(".pager");
+    let inner=document.querySelector(".inner");
+    //设置默认的网址
+    // history.replaceState({index:0},"","hash.html#1");
+    sections.forEach(function (ele,index) {
+        ele.style.height=window.innerHeight+"px";
+        ele.style.lineHeight=window.innerHeight+"px";
+    });
+    //用锚链接来实现
+    let arr=["a","b","c","d","e",];
+    let obj=pagers[0];
+    let h=window.innerHeight;
+    window.onhashchange=function () {
+        let hash=location.hash;
+        // let index=hash.charAt(2)-1;
+        let index=arr.indexOf(hash.slice(1));
+
+        obj.classList.remove("active");
+        pagers[index].classList.add("active");
+        obj=pagers[index];
+        inner.style.marginTop=-h*index+"px";
+    };
+    let flag=true;
+    //滚动事件
+    inner.onwheel=function (e) {
+        if(flag){
+            flag=false;
+            let dir=e.deltaY>0?"down":"up";//利用deltaY判断滚轮是向上滚还是向上滚，判断Y轴上的方向
+            // let index=hash.charAt(2)-1;
+            if(dir==="down"){
+                let hash=location.hash;
+                let index=arr.indexOf(hash.slice(1));
+                let target=arr[index+1];
+                if(target){
+                    location.hash="#"+target;
+                }else {
+                    flag=true;
+                }
+            }else {
+                let hash=location.hash;
+                let index=arr.indexOf(hash.slice(1));
+                let target=arr[index-1];
+                if(target){
+                    location.hash="#"+target;
+                }else {
+                    flag=true;
+                }
+            }
+        }
+    };
+    inner.addEventListener("transitionend",function () {
+        flag=true;
+    })
+</script>
+</html>

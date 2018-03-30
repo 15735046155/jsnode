@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<input type="button" value="百度" onclick="location.href=`https://www.baidu.com`">
+</body>
+<script>
+    //URL  统一资源定位符    URI  同一资源标示符
+    //URI包括URL和URN
+
+    //URL组成:协议http/https    域名www.baidu.com    端口号：80    路径：当前访问的文件夹所在的位置     查询字符串:提交给后台程序处理      锚链接#aa、hash
+
+    // console.log(location);
+    // console.log(location.protocol);//查询协议
+    // console.log(location.hostname);//域名
+    // console.log(location.port);//端口号
+    // console.log(location.host);//域名加端口号
+    // console.log(location.pathname);//路径
+    // console.log(location.search);//查询
+    // console.log(location.hash);//锚链接
+    // console.log(location.href);//当前完整的URL
+    //以上七个属性都可以设置的
+    // document.body.onclick=function () {
+    //     location.assign("http://www.baidu.com");//加载一个新的页面，会产生历史记录
+    //     //location.replace("http://www.baidu.com");//加载一个新的页面，但是不会产生历史记录
+    //     location.reload();//重新加载当前站点的资源
+    // }
+
+
+</script>
+</html>

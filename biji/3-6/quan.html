@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .inner{
+            transition: all 1s;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .section{
+            text-align: center;
+            font-size: 50px;
+        }
+        .pagerbox{
+            width: 30px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-content: space-around;
+            flex-wrap: wrap;
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            margin-top: -75px;
+        }
+        .pager{
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .pager.active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="inner">
+        <div class="section">1</div>
+        <div class="section">2</div>
+        <div class="section">3</div>
+        <div class="section">4</div>
+        <div class="section">5</div>
+    </div>
+    <div class="pagerbox">
+        <div class="pager active"></div>
+        <div class="pager"></div>
+        <div class="pager"></div>
+        <div class="pager"></div>
+        <div class="pager"></div>
+    </div>
+</div>
+<script>
+    //history.pushState({对象},"标题","地址")在历史记录中添加一个新地址
+    //       .replaceState({},"","新地址")直接替换当前页面地址   地址1.#+名字2.？名字=1
+    let sections=document.querySelectorAll(".section");
+    let pagers=document.querySelectorAll(".pager");
+    let inner=document.querySelector(".inner");
+    //设置默认的网址
+    history.replaceState({index:0},"","hash.html#1");
+    sections.forEach(function (ele,index) {
+        ele.style.height=window.innerHeight+"px";
+        ele.style.lineHeight=window.innerHeight+"px";
+    });
+    let obj=pagers[0];
+    let h=window.innerHeight;
+    pagers.forEach(function (ele,index) {
+        ele.onclick=function () {
+            obj.classList.remove("active");
+            ele.classList.add("active");
+            obj=ele;
+            inner.style.marginTop=-h*index+"px";
+            history.pushState({index:index},"","hash.html#"+(index+1));//点击一次pager给历史记录添加一条记录。
+            //第三个参数可以随便设置，但是不能刷新，一旦刷新浏览器就会去找那个地址，找不到就会报错404。想让其可以刷新就要设置成本代码所在的HTML页面的名字。
+        }
+    });
+    //onpopstate是点击箭头的时候，不仅仅是让地址返回，也要让内容相应的返回去
+    window.onpopstate=function () {
+        let index=history.state.index;//获取历史记录的一个属性index，让该属性值等于pagers 的下标
+        obj.classList.remove("active");
+        pagers[index].classList.add("active");
+        obj=pagers[index];//以上三行代码是点击箭头的时候，让右边的圈圈相应的加上删除active
+        inner.style.marginTop=-h*index+"px";//通过控制index让内容相应的改变
+    };
+    //滚动实现
+    let flag=true;
+    inner.onwheel=function (e) {
+        if(flag){
+            flag=false;
+            let dir=e.deltaY>0?"down":"up";
+            let hash=location.hash;
+            let index=arr.indexOf(hash.slice(1));
+            let target;
+            if(dir==="down"){
+                 target=arr[index+1];
+            }else {
+                 target=arr[index-1];
+            }
+            if(target){
+                location.hash="#"+target;
+            }else {
+                flag=true;
+            }
+        }
+    };
+    inner.addEventListener("transitionend",function () {
+        flag=true;
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #aa{
+            border-radius: 50%;
+        }
+        .btn{
+            width: 150px;
+            height: 80px;
+            background-color: green;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin:auto;
+            color: #fff;
+            text-align: center;
+            line-height: 80px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            user-select: none;//不能选中内容
+            transition:all .5s;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+        }
+        .one{
+            background-color: red;
+            float: left;
+        }
+        .two{
+            background-color: #50ff23;
+            float: left;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--<div class="demon">12312</div>-->
+    <!--<div class="btn">开始</div>-->
+    <div class="one"></div>
+    <div class="one"></div>
+    <div class="one"></div>
+    <div style="clear: both"></div>
+    <div class="two"></div>
+    <div class="two"></div>
+    <div class="two"></div>
+
+</body>
+<script>
+    var ones=document.querySelectorAll(".one");
+    var twos=document.querySelectorAll(".two");
+    console.log(ones);
+    console.log(twos);
+    //方法1
+    for(let i=0;i<ones.length;i++){
+        ones[i].onclick=function () {
+            for(var j=0;j<twos.length;j++){
+                twos[j].style.opacity=0;
+            }
+            twos[i].style.opacity=1;
+        }
+    }
+
+    //方法2
+    // for(var i=0;i<ones.length;i++){
+    //     (function (a) {
+    //         ones[a].onclick=function(){
+    //             for(var j=0;j<twos.length;j++){
+    //                 twos[j].style.opacity=0;
+    //             }
+    //             twos[a].style.opacity=1
+    //         }
+    //     })(i)
+    // }
+
+
+
+    // console.dir(document);//展示某个对象的所有属性
+    // var divObj=document.querySelector(".demon");
+    // console.dir(divObj);
+    //修改ID
+    // divObj.id="aa";
+    //修改样式
+    // divObj.className="box";
+    //修改内容
+    // divObj.innerHTML="4444";
+    //展示所有行内样式
+    // console.log(divObj.style);
+    //展示行内样式的宽
+    // console.log(divObj.style.width);
+    //设置宽度,颜色
+    // divObj.style.width="200px";
+    // divObj.style.background="blue";
+    //js的重点  点击后样式改变
+    // divObj.onclick=function () {
+    //     divObj.style.width="200px";
+    //     divObj.style.background="blue";
+    //     divObj.innerHTML="4444";
+    //     divObj.className="box";
+    //     divObj.id="aa";
+    // }
+
+
+    //点击变色  变内容
+    // var btnObj=document.querySelector(".btn");//把获取到的标签赋值给btnObj这个变量
+    // var n=0;
+    // btnObj.onclick=function () {
+    //     n++;
+    //     if(n%2===0){
+    //         btnObj.style.background="red";
+    //         btnObj.style.color="#fff";
+    //         btnObj.innerHTML="开始";
+    //     }else{
+    //         btnObj.style.background="#66f";
+    //         btnObj.style.color="red";
+    //         btnObj.innerHTML="暂停";
+    //     }
+    // }
+
+</script>
+</html>

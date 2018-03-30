@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据存储</title>
+</head>
+<body>
+<input type="text" id="text">
+<input type="button" value="提交" id="submit">
+<a href="demo2.html">demo2</a>
+</body>
+<script>
+let submit=document.querySelector("#submit");
+let text=document.querySelector("#text");
+submit.onclick=function () {
+    let val=text.value;
+    let date=new Date();
+    date.setFullYear(2020);
+    document.cookie="name="+val+";expires="+date.toGMTString();
+}
+
+</script>
+</html>

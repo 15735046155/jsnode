@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sidebar</title>
+    <style>
+        .wenzi{
+            width: 80px;
+            height: 150px;
+            background-color: red;
+            position: fixed;
+            left: 50%;
+            margin-left: -666px;
+            top: 150px;
+        }
+        .tip{
+            width: 80px;
+            height: 28px;
+            background-color: #50ff23;
+            border-bottom: 2px solid #000;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            color: #fff;
+        }
+        .n{
+            width: 800px;
+            height: 2000px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+            margin: 0 auto;
+            border: 1px solid #2b542c;
+
+        }
+        .contaniner{
+            width: 800px;
+            height: 300px;
+            border: 1px solid red;
+            margin-bottom: 80px;
+            background-color: #3333ff;
+            text-align: center;
+        }
+        .wenzi .active{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="wenzi">
+    <div class="tip active">1</div>
+    <div class="tip">2</div>
+    <div class="tip">3</div>
+    <div class="tip">4</div>
+    <div class="tip">5</div>
+</div>
+<div class="n">
+    <div class="contaniner">1</div>
+    <div class="contaniner">2</div>
+    <div class="contaniner">3</div>
+    <div class="contaniner">4</div>
+    <div class="contaniner">5</div>
+</div>
+</body>
+<script>
+    let tips=document.querySelectorAll(".tip");
+    tips.forEach(function (ele,index) {
+        let ot=document.
+        ele.onclick=function () {
+
+        }
+    })
+</script>
+</html>

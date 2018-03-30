@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原生对象</title>
+    <script>
+        //Array String Math 数学对象
+        console.log(Math.abs(-100));//取绝对值
+        console.log(Math.round(12.56))//四舍五入  13
+        console.log(Math.round(12.4999));//  12
+        console.log(Math.floor(4.999));//向下取整数   4
+        console.log(Math.floor(-1.2));//-2
+        console.log(Math.ceil(4.1));//向上取整   5
+
+        console.log(Math.max(1,2,3,4,5,7,8,-89));//8   找一组数据中最大的数字
+        console.log(Math.min(45,65,7,89,54))//7    找一组数据中最小的数字
+
+        console.log(Math.random());//随机取数，不需要传递参数，产生16位的0-1的小数
+        console.log(Math.random()*50+50);//50-100
+        //求任意范围的随机数，最小值是多少加多少，范围是多少个数乘多少
+        // var arr=["a","b","c","d"];
+        // console.log(Math.random()*3);//0-3的随机数字
+        // setInterval(function () {
+        //     console.log(arr[Math.floor(Math.random())]);//1-3的随机整数
+        // },3000)
+
+        //A-Z的随机字母  即65-90
+        // var num=Math.floor(Math.random()*26+65);
+        // console.log(String.fromCharCode(num));
+
+        console.log(Math.sqrt(4));//开根号  2
+        console.log(Math.pow(2,10));//2的十次方  1024
+        console.log(2**10);//es6中2的十次方
+        console.log(Math.sin());//接受的是弧度，不是角度
+        console.log(Math.sin(Math.PI/6));//sin30°
+        console.log(Math.cos());
+        //deg角度   rad弧度
+        //360deg    2PI
+        //180deg    PI
+        console.log(Math.PI);//输出一个非常接近3.1415926的数
+
+    </script>
+    <style>
+        .container{
+            width: 1000px;
+            height: 600px;
+            margin:0 auto;
+        }
+        .container div{
+            width: 100px;
+            height: 100px;
+            float: left;
+            text-align: center;
+            line-height: 100px;
+        }
+        input{
+            width: 100px;
+            height: 30px;
+            margin: 0 auto;
+            display: block;
+            background: red;
+            color: #fff;
+            margin-top: 50px;
+        }
+        .container div.active{
+            background-color: blue!important;
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+        <div class="active"></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+       <div></div><div></div><div></div>
+
+   </div>
+   <input type="button" value="start">
+</body>
+<script>
+    var  divs=document.querySelectorAll(".container div");
+    var  start=document.querySelector("input[type=button]");
+    let obj=divs[0];
+    let i=0;
+    let t;
+    start.onclick=function () {
+        i++;
+        if(i%2===1){
+            t=setInterval(function () {
+                let num=Math.floor(Math.random()*55);
+                obj.classList.remove("active");
+                divs[num].classList.add("active");
+                obj=divs[num];
+            },200)
+        }else {
+            clearInterval(t);
+        }
+    };
+    divs.forEach(function (ele,index) {
+        var r=Math.floor(Math.random()*155+100);
+        var g=Math.floor(Math.random()*155+100);
+        var b=Math.floor(Math.random()*155+100);
+        ele.style.background=`rgb(${r},${g},${b})`;
+        ele.innerHTML=index+1;
+    });
+
+</script>
+</html>

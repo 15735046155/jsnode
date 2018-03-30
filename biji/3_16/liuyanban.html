@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 300px;
+            height: 300px;
+            border:1px solid #ccc;
+            margin: 0 auto;
+            position: relative;
+        }
+        #text{
+            width: 260px;
+            height: 60px;
+            resize: none;
+            border:none;
+            border-bottom: 1px solid #ccc;
+            padding: 20px;
+            font-family: "微软雅黑";
+        }
+        #text:focus{
+            outline: none;
+        }
+        #count{
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            right: 0;
+            top: 70px;
+            color: #999;
+        }
+        #btn{
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            line-height:30px;
+            color: #fff;
+            background-color: blue;
+            border: none;
+            margin-left: 110px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .showarea{
+            width: 300px;
+            height: 140px;
+            border-top: 1px solid #ccc;
+        }
+        .showarea h1{
+            width: 300px;
+            height: auto;
+            font-size: 16px;
+            text-align: center;
+        }
+        .showarea p{
+            width: 300px;
+            height: 30px;
+            font-size: 16px;
+            position: relative;
+            background-color: yellow;
+            line-height: 30px;
+        }
+        .showarea p span{
+            width: 50px;
+            height: 30px;
+            float: right;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            position: absolute;
+            right: 0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <textarea name="" id="text" placeholder="记录此刻的心情"></textarea>
+    <div id="count"><span>40</span>/<span id="now">0</span></div>
+    <input type="button" value="提交" id="btn">
+    <div class="showarea">
+        <h1>show</h1>
+        <p>内容<span id="index">删除</span></p>
+    </div>
+</div>
+</body>
+<script>
+    let textarea=document.querySelector("#text");
+    let now=document.querySelector("#now");
+    let showarea=document.querySelector(".showarea");
+
+    textarea.onkeydown=count;
+    textarea.onkeyup=count;
+    function getData() {
+        return localStorage.message?JSON.parse(localStorage.message):[];
+    }
+    function saveData(data) {
+        localStorage.message=JSON.stringify(data);
+    }
+    function render() {
+        let data=getData();
+        showarea.innerHTML="<h1>show</h1>";
+        data.forEach(val,index){
+            let p=document.createElement(p);
+            p.innerHTML=val+"<span id='+index+'>删除</span>";
+            showarea.appendChild(p);
+        }
+    }
+    function count() {
+        let value=this.value;
+        let length=value.length;
+        if(length>40){
+            length=40;
+            this.value=value.slice(0,40);
+        }
+        now.innerHTML=length;
+    }
+    let btn=document.querySelector("#btn");
+    btn.onclick=submit;
+    function submit() {
+        let val=textarea.value;
+        if(val===""){
+            alert("请输入内容");
+            return;
+        }
+        textarea.value="";
+        now.innerHTML="0";
+        let data=getData();
+        data.push(val);
+
+
+    }
+    window.onkeydown=function (e) {
+        if(e.ctrlKey&&e.keyCode===13){
+            submit();
+        }
+    };
+    //删除  tagName和nodeName  获取标签名
+    showarea.onclick=function (e) {
+        let a=e.target;
+        if(a.nodeName==="SPAN"){
+
+        }
+    }
+</script>
+</html>

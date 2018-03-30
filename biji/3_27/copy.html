@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拷贝</title>
+</head>
+<body>
+<script>
+    let obj={
+        name:"zhangsan",
+        age:"10",
+        friends:[{name:"a",age:"20"},{name:"b",age:"30"}]
+    };
+    //深拷贝
+    function deepCopy(o) {
+        let newobj;
+        if(Array.isArray(o)){
+            newobj=[];
+        }else{
+            newobj={};
+        }
+        for(let i in o){
+            if(typeof o[i]!=="object"){
+                newobj[i]=o[i]
+            }else {
+                newobj[i]=deepCopy(o[i]);//递归解决深拷贝问题
+            }
+        }
+        return newobj
+    }
+    let obj2=deepCopy(obj);
+    console.log(obj2);
+    obj2.friends[0].name="www";
+    console.log(obj);
+    console.log(obj2);
+
+</script>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    $.fn.extend({name:function () {
+            alert(1)
+        }});//扩展到jQuery对象的原型身上
+    $.extend();//扩展到  jQuery/$  函数身上
+</script>
+</body>
+</html>

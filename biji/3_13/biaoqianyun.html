@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .scene {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="scene"></div>
+</body>
+<script>
+    let arr = ["html", "css", "javascript", "vue", "bootstrap", "Nodejs", "php", "mysql", "express", "Antd", "HTTP", "TCP/IP", "MVC"];
+    let docf = document.createDocumentFragment();
+    function getColor() {
+        let colorArr = ["6", "9", "c", "3"];
+        let str = "#";
+        for (let i = 0; i < 3; i++) {
+            str += colorArr[Math.floor(Math.random() * colorArr.length)]
+        }
+        return str;
+    }
+    function checkPos(l,t) {
+        for(let i=0;i<pos.length;i++){
+            let p=pos[i];
+            if(l>p.l-100&&l<p.l+100&&t>p.t-100&&t<p.t+100){
+                return true;
+            }
+        }
+        return false;
+    }
+    let pos = [];
+    let divArr=arr.map(function (value) {
+        let newdiv = document.createElement("div");
+        let randomLeft, randomTop;
+        do {
+            randomLeft = (window.innerWidth - 100) * Math.random();
+            randomTop = (window.innerHeight - 100) * Math.random();
+        } while (checkPos(randomLeft, randomTop));
+
+        pos.push({l: randomLeft,t: randomTop});
+        newdiv.style.cssText = `width:100px;height:100px;background:${getColor()};position:absolute;left:${randomLeft}px;top:${randomTop}px;text-align:center;border-radius:50%;line-height:100px;color:#111;font-size:18px;`;
+        newdiv.innerHTML = value;
+        docf.appendChild(newdiv);
+        return newdiv;
+    });
+    let scene = document.querySelector(".scene");
+    scene.appendChild(docf);
+
+
+    //移动
+    setInterval(function () {
+        divArr.forEach(function (ele,index) {
+            pos[index].l-=1;
+            if(pos[index].l<-100){
+                pos[index].l=window.innerWidth;
+            }
+            ele.style.left=pos[index].l+"px";
+        })
+    })
+
+</script>
+</html>

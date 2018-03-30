@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item{
+            width: 296px;
+            height: 420px;
+            border:1px solid #04cacc;
+            position:relative;
+        }
+        .inner{
+            width: 1000px;
+            height: 420px;
+            background-color: rosybrown;
+        }
+        .content{
+            width: 296px;
+            height: 420px;
+            background: red;
+            color: #fff;
+            text-align: center;
+            line-height: 420px;
+            font-size: 20px;
+            float: left;
+            margin-right: 2px;
+        }
+        .lunbo{
+            width: 100px;
+            height: 20px;
+            background-color: yellow;
+            position: absolute;
+            left:0;
+            right:0;
+            margin:auto;
+            bottom:10px;
+        }
+        .dian{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: blue;
+            margin:0 10px;
+            float: left;
+        }
+        .lunbo .active{
+            background-color:red ;
+        }
+        .inner .active{
+            z-index: 9;
+        }
+        .item_prev{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            font-size: 50px;
+            cursor: pointer;
+        }
+        .item_next{
+            position: absolute;
+            right: 0;
+            top: 50%;
+            font-size: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div class="inner">
+            <div class="content active">1</div>
+            <div class="content">2</div>
+            <div class="content">3</div>
+        </div>
+        <div class="item_prev">&lt;</div>
+        <div class="item_next">&gt;</div>
+        <div class="lunbo">
+            <p class="dian active"></p>
+            <p class="dian"></p>
+            <p class="dian"></p>
+        </div>
+    </div>
+</body>
+<script>
+    let prev=document.querySelector(".item_prev");
+    let next=document.querySelector(".item_next");
+    let inner=document.querySelector(".inner");
+    // let cons=document.querySelectorAll(".content");
+    let pager=document.querySelectorAll(".dian");
+    let n=0;
+    next.onclick=function () {
+        n++;
+        if(n===pager.length){
+            n=pager.length-1;
+            return;
+        }
+        inner.style.marginLeft=n*-296+"px";
+        pager[n].classList.add("active");
+        pager[n-1].classList.remove("active");
+        obj=pager[n];
+    };
+    prev.onclick=function () {
+        n--;
+        if(n<0){
+            n=0;
+            return;
+        }
+        inner.style.marginLeft=n*-296+"px";
+        pager[n].classList.add("active");
+        pager[n+1].classList.remove("active");
+        obj=pager[n];
+    };
+    let obj=pager[0];
+    pager.forEach(function (ele,index) {
+        ele.onclick=function () {
+            obj.classList.remove("active");
+            ele.classList.add("active");
+            obj=ele;
+            inner.style.marginLeft=index*-296+"px";
+            n=index;
+        }
+    })
+</script>
+<script>
+    // let arr=[1,2,3];
+    console.log(document);
+</script>
+</html>

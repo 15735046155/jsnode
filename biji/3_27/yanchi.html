@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>延迟</title>
+    <style>
+        .section{
+            width: 1000px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        .section img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="jquery.lazyload.js"></script>
+<div class="section"><img data-original="bmw_m1_hood.jpg" alt=""></div>
+<div class="section"><img data-original="bmw_m1_side.jpg" alt=""></div>
+<div class="section"><img data-original="bmw_m3_gt.jpg" alt=""></div>
+<div class="section"><img data-original="viper_1.jpg" alt=""></div>
+<div class="section"><img data-original="viper_corner.jpg" alt=""></div>
+<script>
+    $(function() {
+        $(".section img").lazyload(
+            // {effect: "fadeIn"}//淡入式
+            // {effect:"slideDown"}//出现效果下拉式
+            // {event:"click"}//点击图片才出现
+            );
+    });
+</script>
+</body>
+</html>

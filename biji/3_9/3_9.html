@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //es6   function
+        //1函数的默认值设置
+        // function table(rows=10,cols=10,color="red") {
+        //     console.log(rows,cols,color)
+        // }
+        // table(3,3,"red");//3 3 "red"
+        // table(3,3);//3 3 "red"
+        // table();//10  10 "red"
+
+        //2  箭头函数  可以代替回调函数
+        // var arr=[1,2,3,4];
+        // var newarr=arr.map(function (v) {
+        //     return v*v;
+        // });
+        // var newarr=arr.map(v=>v*v);
+        //
+        // //箭头函数求和
+        // //1
+        // var sum=(a+b)=>a+b;//(a+b)形参   a+b实参     相当于函数
+        // console.log(sum(1,2))//3
+        // //2  没有形参
+        // var getPI=function () {
+        //     return 3.1415926
+        // };
+        // var getPI=()=>3.1415926// 没有形参的时候用()代替
+        // //3  函数内部不仅执行的是参数，还有其他的代码，用{}括起来
+        // var  fn=function (n) {
+        //     alert(n);
+        //     return n;
+        // };
+        // var fn=n=>{
+        //     alert(n);
+        //     return n;
+        // }
+        // //4.返回值为对象,用（）把对象括起来
+        // var fn2=function (w,h) {
+        //     return {
+        //         width:w,
+        //         hight:h
+        //     }
+        // }
+        // var fn2=(w,h)=>({
+        //     width:w,
+        //     height:h
+        // });
+
+        //箭头函数的特征
+        //1  箭头函数没有arguments
+        //2. 箭头函数不会影响当前this的指向
+        // var name="zhangsan";
+        // var obj={
+        //     name:"lisi",
+        //     fn:function () {
+        //         setInterval(function () {
+        //             console.log(this);//windows
+        //             console.log(this.name);//zhangsan
+        //         },3000)
+        //     }
+        // };
+        // obj.fn();
+        //
+        // var name="zhangsan";
+        // var obj={
+        //     name:"lisi",
+        //     fn:function () {
+        //         setInterval(()=> {
+        //             console.log(this);//obj
+        //             console.log(this.name);//lisi
+        //         },3000)
+        //     }
+        // };
+        // obj.fn();
+
+
+    </script>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+
+    //this
+    //es5  匿名函数的this不能改，若要改的话，在匿名函数后边加.bing(要更改的this)  只有匿名函数可以用
+    var div=document.querySelector("div");
+    var obj={name:"zhangsan"};
+    // div.onclick=function () {
+    //     console.log(this);//此处this值得是div
+    // };
+    //更改this指向
+    // div.onclick=function () {
+    //     console.log(this)//此处的this值得是obj
+    // }.bind(obj);
+
+    setInterval(function(){
+        console.log(this)
+    }.bind(obj),3000);//{name: "zhangsan"}
+</script>
+</html>

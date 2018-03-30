@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <style>
+        .item{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            margin: 10px;
+            font-size: 20px;
+        }
+        .item:nth-child(4):hover{
+            width: 200px;
+            transition: all 1s;
+        }
+        .item:nth-child(11){
+            animation:rotate 3s;
+        }
+        @keyframes rotate {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        //window.onload 文档内容加载完成事件
+        window.onload=function () {
+            let items=document.querySelectorAll(".item");
+            console.log(items)
+        }
+    </script>
+</head>
+<body>
+<div class="item">1</div>
+<div class="item">2</div>
+<div class="item">3</div>
+<div class="item">4</div>
+<div class="item">5</div>
+<div class="item">6</div>
+<div class="item">7</div>
+<div class="item">8</div>
+<div class="item">9</div>
+<div class="item">10</div>
+<div class="item">11</div>
+<input type="text" id="text">
+</body>
+<script>
+let divs=document.querySelectorAll(".item");
+let input=document.querySelector("#text");
+divs[0].onclick=function () {
+    console.log("这是一个单击事件");//1
+};
+divs[1].onmouseenter=function () {
+    console.log("这是一个鼠标进入事件");//2
+};
+divs[2].onmouseleave=function () {
+    console.log("这是一个鼠标离开事件");//3
+};
+divs[3].addEventListener("transitionend",function () {
+    console.log("这是一个监听事件事件");//4
+});
+window.onscroll=function () {
+    console.log("这是一个滚动事件");
+};
+input.onchange=function () {
+    console.log("改变事件");//选择了其他选项后才会执行
+};
+divs[4].ondblclick=function () {
+    console.log("这是一个鼠标双击事件");//5
+};
+divs[4].onclick=function () {
+    console.log("这是一个鼠标单击事件");//5
+};
+divs[5].onmousedown=function () {
+    console.log("这是一个鼠标按下的事件");//6
+};
+divs[6].onmouseup=function () {
+    console.log("这是一个鼠标抬起的事件");//7
+};
+divs[7].onmousemove=function () {
+    console.log("这是一个鼠标移动的事件");//8
+};
+divs[8].onmouseover=function () {
+    console.log("这是一个鼠标进入事件")//9
+};
+divs[8].onmouseout=function () {
+    console.log("这是一个鼠标离开事件")//9
+};
+//滚轮事件  onwheel
+divs[9].onwheel=function () {
+    console.log("这是一个滚轮事件")//10
+};
+//获得焦点事件
+input.onfocus=function () {
+    console.log("这是一个获得焦点事件");
+};
+//失去焦点事件  onchange
+input.onblur=function () {
+    console.log("这是一个失去焦点事件");
+};
+//键盘事件的触发
+//可以往window、document、body、可以输入的元素  身上添加键盘事件
+window.onkeydown=function () {
+    console.log("这是一个键盘按下事件");
+};
+window.onkeypress=function () {
+    console.log("这是一个键盘按压事件");
+};
+window.onkeyup=function () {
+    console.log("这是一个键盘抬起事件");
+};
+//动画结束
+    divs[10].addEventListener("animationend",function () {
+        console.log("动画效果结束")
+    })
+</script>
+</html>

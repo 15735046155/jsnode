@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+
+        .item {
+            width: 200px;
+            height: 200px;
+            box-sizing: border-box;
+            border: 1px solid pink;
+            float: left;
+            position: relative;
+        }
+
+        .maskcontainer {
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: #ccc;
+            overflow: hidden;
+        }
+
+        .mask {
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            position: absolute;
+            left: -200px;
+            top: 0;
+        }
+
+        @keyframes leftIn {
+            0% {
+                left: -200px;
+                top: 0;
+            }
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        .leftIn {
+            animation: leftIn 0.5s ease-in forwards;
+        }
+
+        @keyframes rightIn {
+            0% {
+                left: 200px;
+                top: 0;
+            }
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        .rightIn {
+            animation: rightIn 0.5s ease-in forwards;
+        }
+
+        @keyframes topIn {
+            0% {
+                left: 0;
+                top: -40px;
+            }
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        .topIn {
+            animation: topIn 0.5s ease-in forwards;
+        }
+
+        @keyframes bottomIn {
+            0% {
+                left: 0;
+                top: 40px;
+            }
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        .bottomIn {
+            animation: bottomIn 0.5s ease-in forwards;
+        }
+
+        @keyframes leftOut {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            100% {
+                left: -200px;
+                top: 0;
+            }
+        }
+
+        .leftOut {
+            animation: leftOut 0.5s ease-in forwards;
+        }
+
+        @keyframes rightOut {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            100% {
+                left: 200px;
+                top: 0;
+            }
+        }
+
+        .rightOut {
+            animation: rightOut 0.5s ease-in forwards;
+        }
+
+        @keyframes topOut {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            100% {
+                left: 0;
+                top: -40px;
+            }
+        }
+
+        .topOut {
+            animation: topOut 0.5s ease-in forwards;
+        }
+
+        @keyframes bottomOut {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            100% {
+                left: 0;
+                top: 40px;
+            }
+        }
+
+        .bottomOut {
+            animation: bottomOut 0.5s ease-in forwards;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="maskcontainer">
+            <div class="mask"></div>
+        </div>
+    </div>
+</div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    let lx, ly, direction;//上一次的位置
+    let n = 0;//表示鼠标移动的次数
+    let items = $(".item");
+    items.data("isHover", false);
+    items.mousemove(function (e) {
+        let ox = e.offsetX;//现在的位置
+        let oy = e.offsetY;
+        let dir = Math.abs(ox - lx) > Math.abs(oy - ly) ? "h" : "v";
+        if (dir === "h") {
+            if (ox > lx) {
+                direction = "right";
+            } else {
+                direction = "left";
+            }
+        }
+        if (dir === "v") {
+            if (oy > ly) {
+                direction = "bottom";
+            } else {
+                direction = "top";
+            }
+        }
+        n++;
+        if (n > 1 && $(this).data("isHover") === false) {
+            $(this).data("isHover", true);
+            let mask = $(this).find(".mask");
+            let dir = Math.abs(ox - lx) > Math.abs(oy - ly) ? "h" : "v";
+            mask.attr("class", "mask");
+            if (dir === "h") {
+                if (ox > lx) {
+                    mask.addClass("leftIn");
+                } else {
+                    mask.addClass("rightIn");
+                }
+            }
+            if (dir === "v") {
+                if (oy > ly) {
+                    mask.addClass("topIn");
+                } else {
+                    mask.addClass("bottomIn");
+                }
+            }
+        }
+        lx = ox;
+        ly = oy;
+    });
+    items.mouseleave(function () {
+        $(this).data("isHover", false);
+        n = 0;
+        let mask = $(this).find(".mask");
+        switch (direction) {
+            case "left":
+                mask.addClass("leftOut");
+                break;
+            case "right":
+                mask.addClass("rightOut");
+                break;
+            case "bottom":
+                mask.addClass("bottomOut");
+                break;
+            case "top":
+                mask.addClass("topOut");
+        }
+    });
+    $(".mask").on("animationend", function () {
+        if ($(this).parent().parent().data("isHover") === false) {
+            $(this).attr("class", "mask");
+        }
+    })
+</script>
+</body>
+</html>

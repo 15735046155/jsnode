@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // document.write("123");
+        // document.write("<div>456</div>");
+        // for(var i=0;i<10;i++){
+            //字符串连接数值的方法
+            // 方法1
+            // document.write("<li>");
+            // document.write(i+1);
+            // document.write("</li>");
+            //
+            // //方法2
+            // document.write("<li>"+(i+1)+"</li>");
+            //
+            // //方法3
+            // document.write(`<li>${i+1}</li>`);
+            //用document.write("123");这种输出方法，可以直接查看结果，不用再控制台查看结果。
+        // }
+
+        for(var i=1;i<6;i++){
+            for(var j=1;j<6-i;j++){
+                document.write("&nbsp;");
+            }
+            for(var j=1;j<=i;j++){
+                document.write("*&nbsp;");
+            }
+            document.write("<br/>");
+        }
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

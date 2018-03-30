@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+		table{
+			width: 600px;
+			margin: 0 auto;
+			text-align: center;
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+		}
+		td,th{
+			border-bottom: 1px solid #ccc;
+			height: 30px;
+			width: 150px;
+		}
+		thead{
+			background-color: #ccc;
+		}
+		.del{
+			color: red;
+		}
+		td input{
+			margin: 0;
+			padding: 0;
+			border: 0;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<!--<td>张三</td>-->
+				<!--<td>18</td>-->
+				<!--<td>男</td>-->
+				<!--<td class="del">删除</td>-->
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr >
+				<td colspan="4" class="add">+</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+<script>
+	let add=document.querySelector(".add");
+	let tbody=document.querySelector("tbody");
+	let tr=document.querySelector("tbody tr");
+	let td=document.querySelector("tbody tr td");
+
+	function getDate(){
+	    return localStorage.message?JSON.parse(localStorage.message):[];
+	}
+	function saveDate(date){
+	    localStorage.message=JSON.stringify(date);
+	}
+	function render(){
+	    let date=getDate();//获取新数据
+	    let str="";
+	    date.forEach(function(obj,index){
+			str+=`<tr id=${index}>
+					<td class="name">${obj.name}</td>
+					<td class="age">${obj.age}</td>
+					<td class="sex">${obj.sex}</td>
+					<td class="del">删除</td>
+				</tr>`
+		});
+		tbody.innerHTML=str;//tr 插入到表格中
+	}
+	render();
+	//添加操作
+	// let del=document.querySelector(".del");
+	add.onclick=function(){
+		// let newtr=document.createElement("tr");
+		// newtr.innerHTML="<td></td><td></td><td></td><td class='del'>删除</td>";
+		// tbody.appendChild(newtr);
+		let date=getDate();
+		date.push({name:"",age:"",sex:""});
+		saveDate(date);
+		render();
+	};
+	//删除操作
+	tbody.onclick=function(e){
+		let target=e.target;
+		// if(target.classList.contains('del')){
+		if(target.className==="del"){
+            let date=getDate();
+            let index=target.parentNode.id;//找到tr
+            date.splice(index,1);//删除tr
+            saveDate(date);
+            render();
+			// tbody.removeChild(target.parentNode);
+		}
+	};
+	//修改
+	tbody.ondblclick=function(e){
+		let target=e.target;
+		if(target.className!=="del"){
+            let index=target.parentNode.id;//获取操作的位置
+            let attr=target.className;//获取当前操作的类名
+			let input=document.createElement("input");//生成一个input
+            input.value=target.innerHTML;
+			target.innerHTML="";//删除原先的内容
+			target.appendChild(input);
+			input.focus();
+			input.onblur=function(){
+				let val=this.value;
+				let date=getDate();
+				date[index][attr]=val;
+				saveDate(date);
+				render();
+			}
+		}
+	}
+</script>
+</html>

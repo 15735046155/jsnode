@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css</title>
+    <style>
+        body{
+            height: 6000px;
+        }
+        .demo{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /*margin: 0 auto;*/
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            margin-left: 100px;
+            border: 10px solid #000;
+            padding: 10px;
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border:1px solid #ccc;
+            position: absolute;
+            top: 20px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+<div class="demo"></div>
+</div>
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //offsetTop  offsetLeft
+    //offset   position
+     console.log($(".demo").offset());//返回结果是一个对象.offset始终是相对文档的位置，不论父元素是否有定位属性。   获取demo的位置
+     console.log($(".demo").position());//设置自己定位中的left和top值，和父元素没有关系
+    // scrollLeft   scrollLeft()方法   scrollTop   scrollTop()方法
+    $(window).scroll(function () {
+        console.log($(window).scrollTop())
+    });
+    //尺寸
+    console.log($(".demo").width());//100不加padding和border的宽度
+    console.log($(".demo").innerWidth());//120加上padding的宽度
+    console.log($(".demo").outerWidth());//140加上padding和border的宽度
+    console.log($(".demo").outerWidth(true));//240加上margin、padding和border的宽度，前提是要传递一个参数。
+</script>
+</html>

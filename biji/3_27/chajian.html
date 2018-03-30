@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插件</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="jQuery.totop.js"></script>
+    <style>
+        body{
+            height: 3000px;
+        }
+        div{
+            height: 100px;
+            background-color: blue;
+        }
+        .totop{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div class="totop"></div>
+<script>
+    // $(".totop").totop();
+    $.each();//forEach()  for()  for in
+    let obj={name:"zhangsan",age:17};
+    $.each(obj,function (key,val) {
+        console.log(key,val);
+    });
+    let arr=[11,22,33,44,55,66];
+    $.map();//  map()
+    let newarr=$.map(arr,function (val,index) {
+        return val*2;
+    });
+    console.log(newarr);
+    //过滤
+    let newarr2=$.grep(arr,function (val,index) {
+        return val<30;
+    });
+    console.log(newarr2);
+
+    //扩展
+    $.extend({getRandom:function (arr) {
+            var l=arr.length;
+            var num=Math.random()*l;
+            var pos=Math.floor(num);
+            return arr[pos];
+        }});
+    console.log($.getRandom(arr));
+</script>
+</body>
+
+
+</html>

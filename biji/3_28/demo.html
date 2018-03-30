@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动端的拖拽事件</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<script>
+    let demo=document.querySelector(".demo");
+    //在移动端的3个事件  touchstart  touchmove  touchend   touchcancel
+    // demo.ontouchstart=function (e) {
+    //     console.log("手指按下开始");
+    //     console.log(e);
+    //     //timeStamp   刷新页面大按下的时间
+    // };
+    // demo.ontouchmove=function () {
+    //     console.log("手指触发移动");
+    // };
+    // demo.ontouchend=function () {
+    //     console.log("手指抬起事件");
+    // }
+
+    //移动端的拖拽事件实现
+    //1.首先获取当前事件的开始位置
+    let sx,sy,movex,movey,ex=0,ey=0;
+    //sx每一触摸开始的位置  movex当前触摸移动的值是多少  ex保存元素上一次的位移值
+    demo.ontouchstart=function (e) {
+        sx=e.changedTouches[0].clientX;
+        sy=e.changedTouches[0].clientY;
+    };
+    //2获取结果位置，来确定移动的位置
+    demo.ontouchmove=function (e) {
+        let cx=e.changedTouches[0].clientX;
+        let cy=e.changedTouches[0].clientY;
+        movex=cx-sx;
+        movey=cy-sy;
+        demo.style.transform=`translate(${ex+movex}px,${ey+movey}px)`;//当前移动的值
+    };
+    demo.ontouchend=function () {
+        ex=ex+movex;//上一次位移后的位置（等号后边的ex）加上当前要移动的位置值movex
+        ey=ey+movey;
+    }
+</script>
+</body>
+</html>

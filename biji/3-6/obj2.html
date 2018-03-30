@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width: 600px;
+            height: 300px;
+            border:1px solid red;
+            margin:auto;
+        }
+        .top{
+            width: 600px;
+            height: 50px;
+        }
+        .btn{
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+            color: red;
+            font-size: 20px;
+            background: #ccc;
+        }
+        .bottom{
+            width: 600px;
+            height: 250px;
+            position: relative;
+        }
+        .content{
+            width: 600px;
+            height: 250px;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .content img{
+            width: 600px;
+            height: 250px;
+        }
+        .active{
+            background-color: red;
+            color: #fff;
+            z-index: 9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="btn active">1</div>
+            <div class="btn">2</div>
+            <div class="btn">3</div>
+        </div>
+        <div class="bottom">
+            <div class="content" ><img src="01.jpg" alt="" active></div>
+            <div class="content"><img src="03.jpg" alt=""></div>
+            <div class="content"><img src="04.jpg" alt=""></div>
+        </div>
+    </div>
+
+</body>
+    <!--<script>-->
+        <!--var btns=document.querySelectorAll(".btn");-->
+        <!--var conts=document.querySelectorAll(".content");-->
+        <!--console.log(btns);-->
+        <!--console.log(conts);-->
+        <!--//es6-->
+        <!--// for(let i=0;i<btns.length;i++){-->
+        <!--//     btns[i].onclick=function(){-->
+        <!--//         for(let j=0;j<btns.length;j++){-->
+        <!--//             btns[j].style.background="";-->
+        <!--//             btns[j].style.color="";-->
+        <!--//             conts[j].style.zIndex="";-->
+        <!--//         }-->
+        <!--//         btns[i].style.background="red";-->
+        <!--//         btns[i].style.color="#fff";-->
+        <!--//         conts[i].style.zIndex=9;-->
+        <!--//     }-->
+        <!--// }-->
+
+
+        <!--//es5  index为索引的意思-->
+        <!--for(var i=0;i<btns.length;i++){-->
+            <!--btns[i].index=i;-->
+            <!--btns[i].onclick=function () {-->
+                <!--for(let j=0;j<btns.length;j++){-->
+                    <!--btns[j].style.background="";-->
+                    <!--btns[j].style.color="";-->
+                    <!--btns[j].style.zIndex="";-->
+                <!--}-->
+                <!--this.style.background="red";-->
+                <!--this.style.color="#fff";-->
+                <!--conts[this.index].style.zIndex=9;-->
+            <!--}-->
+        <!--}-->
+
+
+        <!--// for(var i=0;i<btns.length;i++){-->
+        <!--//     (function(a){-->
+        <!--//         btns[a].onclick=function () {-->
+        <!--//             for(let j=0;j<btns.length;j++){-->
+        <!--//                 btns[j].style.background="";-->
+        <!--//                 btns[j].style.color="";-->
+        <!--//                 conts[j].style.zIndex="";-->
+        <!--//             }-->
+        <!--//             this.style.background="red";-->
+        <!--//             this.style.color="#fff";-->
+        <!--//             conts[a].style.zIndex=9;-->
+        <!--//         }-->
+        <!--//     })(i)-->
+        <!--// }-->
+
+        <!--// for(var i=0;i<btns.length;i++){-->
+        <!--//     btns[i].onclick=(function (a) {-->
+        <!--//         return function(){-->
+        <!--//             for(let j=0;j<btns.length;j++){-->
+        <!--//                 btns[j].style.background="";-->
+        <!--//                 btns[j].style.color="";-->
+        <!--//                 conts[j].style.zIndex="";-->
+        <!--//             }-->
+        <!--//             this.style.background="red";-->
+        <!--//             this.style.color="#fff";-->
+        <!--//             conts[a].style.zIndex=9;-->
+        <!--//         }-->
+        <!--//     })()-->
+        <!--// }-->
+    <!--</script>-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    //在jQuery中把一个原生对象转换为一个jQuery对象    方法$(原生对象)
+    $(".btn").click(function () {
+        //方法1
+        // $(".btn").removeClass("active");
+        // $(this).addClass("active");
+        //方法2
+        // $(".btn").removeClass("active").filter(this).addClass("active");
+        //方法3
+        //先给当前的元素加上active，在选择当前元素的其他兄弟中带active的，然后清除
+        $(this).addClass("active").siblings(".active").removeClass("active");
+        //方法4
+        // $(".btn.active").removeClass("active").parent().find(this).addClass("active");
+        let index=$(this).index();
+        $(".content").removeClass("active").eq(index).addClass("active");
+    })
+</script>
+</html>

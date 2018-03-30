@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+
+    //在jQuery中  会自动形成队列 [f1:animate,f2:delay,f3:fadeOut,f4:4animate]  队列中会按先后顺序保存异步的（入队），等同步执行完成后，在依次出队
+
+    //控制队列
+    //console.log($(".demo").queue("fx"));//fx=[f1:animate,f2:delay,f3:fadeOut,f4:4animate]是当前元素自身动画的名字
+    //queue  不仅可以输出队列， 还可以自己构造队列,自己构造队列的时候，一定记得写出队，否则，之后添加的动画不会执行。
+    //$(".demo").queue("fn1",[f1,f2,f3....])第一个参数是函数的名字，第二个是数组，里边是要执行的函数
+    // $(".demo").queue("fn",[
+    //     function () {
+    //         setTimeout(function () {
+    //             out();
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("background","blue");
+    //         out()
+    //     },
+    //     function () {
+    //         setTimeout(function () {
+    //             out();
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("height","300");
+    //         out();
+    //     },
+    //     function () {
+    //         setTimeout(function () {
+    //             out();
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("width","300");
+    //         out();
+    //     },
+    // ]);
+    //dequeue()  出对  把出队封装成一个函数，因为每一函数都要出队。，最后在每一个好书后边调用下出队的函数 out。只要有一个函数不出队，后边的函数就不会执行。
+    // function out() {
+    //     $(".demo").dequeue("fn");
+    // }
+    // out();
+
+    //上午  queue()    dequeue()   clearQueue()清空队列
+    //queue的功能
+    //1.返回当前元素的动画队列
+    //$().queue()     $().queue("fx")       $().queue("fn")
+    $(".demo")
+        .animate({width: 300}, 1000)//动画本身就是一个函数  异步
+        // .delay(1000)//延迟1秒
+        // .fadeOut(1000)
+        // .fadeIn(1000)
+        .animate({height: 600}, 1000)
+        // .css("background","blue")
+        //2.在队列的末尾添加一个动画,  就必须写出队，否则就不会出来动画。
+        //$().queue(function(){})     $().queue("fx",function(){})       $().queue("foo",function(){})
+        .queue(function () {
+            $(".demo").animate({"height": 100, "width": 100},1000)
+            // .css({width:100},1000)
+            // .dequeue()
+        });
+        $(".demo").fadeOut(1000)
+    //console.log($(".demo").queue());
+    //3.可以自己定义一个完整的队列。
+    //$().queue("队列的名字"，[function(){},function(){}])  第一个参数是函数的名字，第二个是数组，里边是自己定义的要执行的函数.
+    // $(".demo").queue("fn",[
+    //     function () {
+    //         setTimeout(function () {
+    //             out();
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("background","blue");
+    //         out()
+    //     },
+    //     function () {
+    //         setTimeout(function () {
+    //             out();
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("height","300");
+    //         out();
+    //     },
+    //     function () {
+    //         setTimeout(function () {
+    //             out();
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("width","300");
+    //         out();
+    //     },
+    // ]);
+    //dequeue()  出对  把出队封装成一个函数，因为每一函数都要出队，最后在每一个函数后边调用下出队的函数 out。只要有一个函数不出队，后边的函数就不会执行。
+    // function out() {
+    //     $(".demo").dequeue("fn");
+    // }
+    // out();
+
+
+    //stop()对于当前的动画暂停，后续的动画还会继续执行
+    //stop(false,)参数一，是否清除后续队列，默认是false，设置成true，就清空后续动画。参数二，当前动画是否继续完成，默认值false，继续完成。true直接完成
+    //finish   立即将全部动画瞬间完成
+    //jQuery.fx.off立即停止当前页面的所有动画。  true立即停止
+    //jQuery.fx.interval  设置当前动画的帧数
+</script>
+
+
+</html>

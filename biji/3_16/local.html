@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+   // window.localStorage;  localStorage是window的一个属性
+   //  console.log(window);
+    //设置
+    // localStorage.name="zhangsan";//存储数据
+    // localStorage.setItem("age",117);//存储数据
+    // localStorage["sex"]="man";//存储数据
+    // localStorage.name="lisi";//覆盖
+
+    //获取
+    console.log(localStorage);//Storage {age: "117", name: "lisi", sex: "man", length: 3}
+    // console.log(localStorage.name);//lisi
+    // console.log(localStorage["sex"]);//man
+    // console.log(localStorage.getItem("sex"));//man
+
+    //删除
+    // localStorage.removeItem("name");//删除name 属性
+    //清空
+    // localStorage.clear();//所有存储的都清除了
+
+    //遍历
+   // for(let i=0;i<localStorage.length;i++){
+   //  console.log(localStorage.key(i));
+   // }
+   //localStorage只能存储字符串
+   //  let obj={name:"zhangsan"};
+   // localStorage.object=obj;
+   // console.log(localStorage.object);//[object Object]
+
+    //es5新增的对象叫json，json是一个内置的本地对象，和Math一样
+    //parse 转换的意思
+    //JSON.stringify();//将对象转换为字符串
+    //JSON.parse();//将字符串转换为对象,字符串有个格式要求, var str=`{"name":"lisi"}`;
+
+    // let str=JSON.stringify(obj);
+    // localStorage.data=str;
+    // console.log(localStorage.data);//{"name":"zhangsan"}
+    // let obj2=JSON.parse(localStorage.data);
+    // console.log(obj2);//{name: "zhangsan"}
+
+
+
+</script>
+</html>

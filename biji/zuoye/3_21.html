@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解析网址</title>
+</head>
+<body>
+
+</body>
+<script>
+    let url="http://www.abc.new.com:80/aa/bb/cc/index.html?user=123&pass=123#top";
+    function parseURL(url) {
+        let protocol1=/^[a-z]+/.exec(url)[0];//解析出协议的方法1
+        let protocol=/^.*(?=:\/\/)/.exec(url)[0];//解析出协议的方法2
+        let hostname=/[a-z0-9\-]+(\.[a-z0-9\-]+)+/.exec(url)[0];//最后一个加号表示至少有一个
+        let port=/:\d+/.exec(url)[0];
+        let pathname=/(\/[a-z0-9]+)+\/[a-z0-9\.]+/.exec(url)[0];
+        let search=/\?[a-z0-9&=]+/.exec(url)[0];
+        let hash=/#.*$/.exec(url)[0];
+        return {protocol1,protocol,hostname,port,pathname,search,hash}
+    }
+    console.log(parseURL(url));
+</script>
+</html>

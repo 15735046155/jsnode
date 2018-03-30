@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .banner{
+            width: 1200px;
+            height: 500px;
+            background-color: red;
+            margin: 0 auto;
+            position: relative;
+        }
+        .left{
+            width: 200px;
+            height: 500px;
+            margin-left: 100px;
+            background-color: yellow;
+        }
+        .middle{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            display: none;
+            left: 300px;
+            top: 0;
+            background-color: blue;
+        }
+        .bigbox{
+            width: 500px;
+            height: 500px;
+            background-color: red;
+        }
+        .middlebox{
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+            margin-left: 500px;
+        }
+        .smallbox{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-left: 300px;
+        }
+        .demo1{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+        .demo2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="banner">-->
+    <!--<div class="left"></div>-->
+    <!--<div class="middle"></div>-->
+<!--</div>-->
+<!--<div class="bigbox">-->
+    <!--<div class="middlebox">-->
+        <!--<div class="smallbox">-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="demo1">
+    <div class="demo2"></div>
+</div>
+</body>
+<script>
+    let demo1=document.querySelector(".demo1");
+    let demo2=document.querySelector(".demo2");
+
+    demo1.onmouseover=function () {
+        console.log("这是demo1的onmouseover事件");
+    };
+    demo1.onmouseout=function () {
+        console.log("这是demo1的onmouseout事件");
+    };
+    demo2.onmouseover=function (e) {
+        console.log("这是demo2的onmouseover事件");
+        e.stopPropagation();//阻止事件流的传播方式
+    };
+    demo2.onmouseout=function (e) {
+        console.log("这是demo2的onmouseout事件");
+        e.stopPropagation();//阻止事件流的传播方式
+
+    }
+
+
+    // demo1.onmouseenter=function () {
+    //     console.log("demon1的onmouseenter")
+    // };
+    // demo1.onmouseleave=function () {
+    //     console.log("demon1的onmouseleave")
+    // };
+    // demo2.onmouseenter=function () {
+    //     console.log("demon2的onmouseenter")
+    // };
+    // demo2.onmouseleave=function () {
+    //     console.log("demon2的onmouseleave")
+    // }
+
+
+    // let banner=document.querySelector(".banner");
+    // let left=document.querySelector(".left");
+    // let middle=document.querySelector(".middle");
+    // left.onmouseover=function () {
+    //     middle.style.display="block";
+    // };
+    // banner.onmouseout=function () {
+    //     middle.style.display="none";
+    // };
+
+
+    //冒泡事件流例子
+    // let bigbox=document.querySelector(".bigbox");
+    // let middlebox=document.querySelector(".middlebox");
+    // let smallbox=document.querySelector(".smallbox");
+    // bigbox.onclick=function () {
+    //     alert("bigbox");
+    // };
+    // middlebox.onclick=function () {
+    //     alert("middlebox");
+    // };
+    // smallbox.onclick=function () {
+    //     alert("smallbox");
+    // };
+    //捕获型事件流  从大到小
+    // smallbox.addEventListener("click",function () {
+    //     alert("smallbox");
+    // },true);//true是捕获的意思，默认是false
+    // middlebox.addEventListener("click",function () {
+    //     alert("middlebox");
+    // },true);
+    // bigbox.addEventListener("click",function () {
+    //     alert("bigbox");
+    // },true)
+</script>
+</html>

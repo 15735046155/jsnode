@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            width: 600px;
+            height: auto;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        / / 合并边框
+        }
+
+        td, th {
+            border-bottom: 1px solid #ccc;
+        }
+
+        thead {
+            background-color: #ccc;
+        }
+
+        .del {
+            color: red;
+            cursor: pointer;
+        }
+
+        .add {
+            cursor: pointer;
+        }
+
+        td input {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="name">张三</td>
+        <td class="age">19</td>
+        <td class="sex">男</td>
+        <td class="del">删除</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4" class="add">+</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<!--<script>-->
+
+<!--let del=document.querySelector(".del");-->
+<!--let add=document.querySelector(".add");-->
+<!--let tbody=document.querySelector("tbody");-->
+
+<!--//删除-->
+<!--tbody.onclick=function (e) {-->
+<!--let target=e.target;-->
+<!--//判断是否为del的方法有两种-->
+<!--// if(target.className==="del"){-->
+<!--//     tbody.removeChild(target.parentNode);-->
+<!--// }-->
+<!--if(target.classList.contains(del)){-->
+<!--tbody.removeChild(target.parentNode);-->
+<!--}-->
+<!--};-->
+<!--//增加-->
+<!--add.onclick=function () {-->
+<!--let tr=document.createElement("tr");-->
+<!--tr.innerHTML=`<td></td><td></td><td></td><td class="del">删除</td>`;-->
+<!--tr.cssText=tr;-->
+<!--tbody.appendChild(tr);-->
+<!--};-->
+<!--//编辑-->
+<!--//给body添加双击事件-->
+<!--tbody.ondblclick=function (e) {-->
+<!--//获取目标源-->
+<!--let target=e.target;-->
+<!--//判断目标源是否为普通的td-->
+<!--if(target.className!==del){-->
+<!--//创建一个新的input-->
+<!--let input=document.createElement("input");-->
+<!--//把原来input的内容赋给新的input-->
+<!--input.value=input.innerHTML;-->
+<!--//把原来的input的内容删掉-->
+<!--target.innerHTML="";-->
+<!--//新的内容添加到input-->
+<!--target.appendChild(input);-->
+<!--//获得聚焦-->
+<!--input.focus();-->
+<!--//失去聚焦的时候-->
+<!--input.onblur=function () {-->
+<!--//获取现在的内容-->
+<!--let val=this.value;-->
+<!--//将现在的内容给了input-->
+<!--target.innerHTML=val;-->
+<!--}-->
+<!--}-->
+<!--}-->
+<!--</script>-->
+<script>
+    let tbody = document.querySelector("tbody");
+
+    function getData() {
+        return localStorage.table ? JSON.parse(localStorage.table) : [];
+    }
+
+    function saveData(data) {
+        localStorage.table = JSON.stringify(data);
+    }
+
+    function render() {
+        let data = getData();
+        let str = "";
+        data.forEach(function (obj, index) {
+            str += `<tr id=${index}>
+                <td>${obj.name}</td>
+                <td>${obj.age}</td>
+                <td>${obj.sex}</td>
+                <td class="del">删除</td>
+</tr>`
+        });
+        tbody.innerHTML = str;
+    }
+
+    render();
+    let add = document.querySelector(".add");
+    add.onclick = function () {
+        let data = getData();
+        data.push({name: "", age: "", sex: ""});
+        saveData(data);
+        render();
+    };
+    tbody.onclick = function (e) {
+        let target = e.target;
+        if (target.className === "del") {
+            let data = getData();
+            let index = target.parentNode.id;
+            data.splice(index, 1);
+            saveData();
+            render();
+        }
+    };
+    tbody.ondblclick = function (e) {
+        let target = e.target;
+        if (target.className !== "del") {
+            let data = getData();
+            let index = target.parent.id;
+            let arrt = target.className;
+            let input = document.createElement("input");
+            let text = target.innerHTML;
+            target.innerHTML = "";
+            input.value = text;
+            target.appendChild(input);
+            input.focus();
+            input.onblur = function () {
+                let val = this.value;
+                let data = getData();
+                data[index][attr] = val;
+                saveData();
+                render();
+            };
+        }
+    }
+</script>
+</html>

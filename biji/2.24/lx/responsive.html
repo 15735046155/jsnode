@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>响应式布局</title>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.container{
+			width: 1200px;
+			height: auto;
+			margin: 0 auto;
+		}
+		.item{
+			width: 25%;
+			height: 300px;
+			float: left;
+			background-color: red;
+			text-align: center;
+			line-height: 300px;
+			font-size: 30px;
+			color: #fff;
+			border: 10px solid #fff;
+		}
+		@media screen and (min-width: 640px){
+			.container{
+				width: 600px;
+			}
+			.item{
+				width: 50%;
+			}
+		}
+		@media screen and (min-width: 960px){
+			.container{
+				width: 900px;
+			}
+			.item{
+				width: 33.33%;
+			}
+		}
+		@media screen and (min-width: 1280px){
+			.container{
+				width: 1280px;
+			}
+			.item{
+				width: 25%;
+			}
+		}
+		/*@media screen and (max-width: 1280px){
+			.container{
+				width: 900px;
+			}
+			.item{
+				width: 33.333%;
+			}
+		}
+		@media screen and (max-width: 960px){
+			.container{
+				width: 600px;
+			}
+			.item{
+				width: 50%;
+			}
+		}
+		@media screen and (max-width: 640px){
+			.container{
+				width: 300px;
+			}
+			.item{
+				width: 300px;
+			}
+		}*/
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+	</div>
+</body>
+</html>

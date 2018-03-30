@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<script src="zepyo.js"></script>
+
+<script>
+    $(".demo").swipe(function(){
+        console.log("滑动事件")
+    });
+    $(".demo").swipeLeft(function(){
+        console.log("左侧滑动事件")
+    });
+    $(".demo").doubleTap(function(){
+        console.log("双击事件")
+    });
+    $(".demo").longTap(function(){
+        console.log("长按事件")
+    });
+    $(".demo").tap(function(){
+        console.log("单机事件")
+    });
+</script>
+</body>
+</html>

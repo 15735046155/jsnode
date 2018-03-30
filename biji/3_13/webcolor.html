@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+        }
+        .choose{
+            display: flex;
+            width: 1200px;
+            height: 100px;
+            justify-content: center;
+            align-content: center;
+            position: absolute;
+            top: 101px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 999;
+            background-color: #fff;
+        }
+        h1{
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-bottom: 1px solid #ccc;
+        }
+        .container{
+            width: 1200px;
+            margin: 0 auto;
+            margin-top: 100px;
+            padding: 20px;
+        }
+        .color{
+            width: 180px;
+            height: 150px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid #bbb;
+            transition: all 0.3s;
+            float: left;
+        }
+        #type{
+            width: 150px;
+            height: 30px;
+        }
+        .result{
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border:1px solid #888;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>web安全色</h1>
+<div class="choose">
+    <select name="" id="type">
+        <option value="all">全部</option>
+        <option value="soft">柔色</option>
+        <option value="dark">黑色</option>
+    </select>
+    <div class="result">123123</div>
+</div>
+<div class="container"></div>
+</body>
+<script>
+    let container=document.querySelector(".container");
+    let colorArr=["0","3","6","9","c","f"];
+    let result=document.querySelector(".result");
+
+    function render(){
+    container.innerHTML="";
+    let docf=document.createDocumentFragment();
+    for(let i=0;i<colorArr.length;i++){
+        for(let j=0;j<colorArr.length;j++){
+            for(let k=0;k<colorArr.length;k++){
+                let newdiv=document.createElement("div");
+                let color="#"+colorArr[i]+colorArr[j]+colorArr[k];
+                let colorName="#"+colorArr[i]+colorArr[i]+colorArr[j]+colorArr[j]+colorArr[k]+colorArr[k];
+                newdiv.className="color";
+                newdiv.title=colorName;
+                newdiv.style.background=color;
+                newdiv.onclick=function () {
+                    result.innerHTML=this.title;
+                    this.style.transform="scale(1.2,1.2)";
+                };
+                newdiv.addEventListener("transitionend",function () {
+                    this.style.transform="scale(1,1)";
+                });
+                docf.appendChild(newdiv);
+            }
+        }
+    }
+    container.appendChild(docf);
+    }
+    render();
+
+    let select=document.querySelector("#type");
+    //onchange 当选择select 其他选项时会触发
+    select.onchange=function () {
+        let type=this.value;
+        switch(type){
+            case "all":colorArr=["0","3","6","9","c","f"];
+            break;
+            case "soft":colorArr=["6","9","c","f"];
+            break;
+            case "dark":colorArr=["0","3","6","9"];
+            break;
+        }
+        render();
+    };
+    let choose=document.querySelector(".choose");
+    window.onscroll=function () {
+        let st=document.documentElement.scrollTop;
+        if(st>100){
+            choose.style.cssText="position:fixed;top:0;"
+        }else{
+            choose.style.cssText="";
+        }
+    }
+</script>
+</html>

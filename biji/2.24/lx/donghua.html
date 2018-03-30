@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	/*动画设置两种方法：*/
+		/* 1. @keyframes rotate{
+			0%{
+				transform:rotate(0deg);
+			}
+			100%{
+				transform:rotate(360deg);
+			}
+		}*/
+		/*方法2*/
+		@keyframes rotate{
+			from{
+				transform: rotate(0deg);
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		div{
+			width: 300px;
+			height: 300px;
+			background-color: red;
+			animation-name: rotate;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+			animation-delay: 2s;
+			animation-iteration-count: infinite;/*无线循环*/
+			animation-direction: alternate;/*正反旋转*/
+			animation-fill-mode: forwards;/*旋转完成后停留在动画结束的位置*/
+			/*transition: transform 1s linear;*/
+		}
+		div:hover{
+			animation-play-state: paused;/*鼠标经过动画停止*/
+		}
+		/*div:hover{
+			transform:rotate(180deg);
+		}*/
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

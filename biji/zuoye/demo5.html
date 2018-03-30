@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /*display: none;*/
+        }
+        .year{
+            width: 300px;
+            height: 100px;
+            margin: 0 auto;
+            font-size: 30px;
+            border: 1px solid red;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<div class="year">0</div>
+<input type="button" value="click">
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    $(":button").click(function () {
+       // $(".demo").hide("300");//点击隐藏
+        //点击显示效果
+       // $(".demo").show("3000","linear",function () {
+       //     $(this).css("background","blue")
+       // });
+       //  $(".demo").toggle(1000);//切换状态，显示变隐藏，隐藏变显示
+       //  $(".demo").slideDown(1000);//1秒时间下拉展开
+       //  $(".demo").slideUp(1000);//1秒时间下拉收起
+       //  $(".demo").slideToggle(1000);//切换
+       //  $(".demo").fadeOut(1000);//淡出
+        // $(".demo").fadeIn(1000);//淡入
+       //  $(".demo").fadeTo(1000,0.5);//更改透明度,参数一动画时间，参数二透明度数.
+
+
+        // $(".demo").animate({width:500,height:500},1000);
+    //     let obj={t:0};
+    //     $(obj).animate({t:2018},{
+    //         duration:1000,//动画的持续时间
+    //         step:function () {
+    //             $(".year").html(Math.ceil(obj.t));
+    //         },
+    //         //时间太短。数字太大，导致在规定的时间内到达不了规定的数字，所以加上一个complete属性，使最终结果都为设置的数字。
+    //         complete:function () {
+    //             $(".year").html(2018);
+    //         }
+    //     })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+    <script>
+        //arguments的使用
+        // function fn1(a) {
+        //     console.log(arguments[0])//1
+        //     console.log(arguments[1])//2
+        //     console.log(arguments.length)//3
+        // }
+        // fn1(1,2,3)
+        //参数
+        // function fn(rows) {
+        //     console.log(rows)
+        //     for (var i = 1; i <= rows; i++) {
+        //         for (var j = 0; j <= rows - i; j++) {
+        //             document.write("&nbsp;");
+        //         }
+        //         for (var j = 1; j <= i; j++) {
+        //             document.write("*&nbsp;");
+        //         }
+        //         document.write("<br/>");
+        //     }
+        // }
+        // fn(5);//调用函数
+        // fn(4);//此时的4为实参
+        // fn(3);
+
+        //参数可以有多个
+        // function table(rows,cols,color) {
+        //     document.write("<table border='1'>");
+        //     for(var i=0;i<rows;i++){
+        //         if(i%2===0){
+        //             document.write(`<tr bgcolor=${color}>`);
+        //         }else{
+        //             document.write("<tr>");
+        //         }
+        //         for(var j=0;j<cols;j++){
+        //             document.write(`<td>第${i+1}行 第${j+1}列</td>`);
+        //         }
+        //         document.write("</tr>");
+        //     }
+        //     document.write("</table>");
+        // }
+        // table(5,6,"red")
+        // table(2,3,"yellow")
+        // table(4,8,"pink")
+
+        //参数默认值
+        // function table(rows,cols,color) {
+        //     // 设置默认值方法1
+        //     // if(rows===undefined){
+        //     //     rows=10;
+        //     // }
+        //     // if(cols===undefined){
+        //     //     cols=10;
+        //     // }
+        //     // if(color===undefined){
+        //     //     color=10;
+        //     // }
+        //     //     设置默认值方法2,三行代码
+        //     // rows=rows||10;
+        //     // cols=cols||10;
+        //     // color=color||10;
+        //     //     document.write("<table border='1'>");
+        //     //     for(var i=0;i<rows;i++){
+        //     //         if(i%2===0){
+        //     //             document.write(`<tr bgcolor=${color}>`);
+        //     //         }else{
+        //     //             document.write("<tr>");
+        //     //         }
+        //     //         for(var j=0;j<cols;j++){
+        //     //             document.write(`<td>第${i+1}行 第${j+1}列</td>`);
+        //     //         }
+        //     //         document.write("</tr>");
+        //     //     }
+        //     //     document.write("</table>");
+        //     // }
+        //     // table(5,6,"red")
+        //     // table();//不传值相当于rows=undefined  cols=undefined color=undefined,控制台会报错,所以给每个形参设置默认值
+        // }
+
+        //实参超出形参
+        // function fun(a,b) {
+        //     alert(a)
+        //     alert(b)
+        // }
+        // fun(1,2,3);//传的超出形参不会影响输出,在函数中加一句console.log(a,b),然后在控制台查看输出的结果。
+
+        //输出传的每一个实参
+       //  function fn1() {
+       //      console.log(arguments[0])//10
+       //      console.log(arguments[1])//1
+       //  }
+       // fn1(10,1);
+
+
+        //匿名函数
+        // var foo=function() {
+        //     alert(1);
+        // }
+        // foo();//foo();不能放到函数之前，声明变量可以优先调用，但赋值不可以被优先调用。
+
+
+        //实例化构造函数
+        // var bar=new Function ("alert(2)")
+        // bar();
+
+
+        //自调用,先写一个函数，然后用小括号括起来，在调用。
+        // (function () {
+        //     alert("函数自调用")
+        // })();
+
+
+
+        //函数的重载
+        //arguments.length是参数的个数
+        // function fn3() {
+        //     var sum=0;
+        //     if(arguments.length===1){
+        //         for(var i=0;i<=arguments.length[0];i++){
+        //             sum+=i;
+        //         }else if(arguments.length>1){
+        //             for(i=0;i<arguments.length;i++){
+        //                 sum+=arguments[i];
+        //             }
+        //         }
+        //     }
+        //     return sum;
+        // }
+        // fn3(10);//10
+        // fn3(1,2);//3
+
+        //变量的作用域
+        // var num=10;
+        // function fn() {
+        //     num++;
+        //     console.log(num);
+        // }
+        // fn();
+        // console.log(num);//输出结果是11和11；因为自加后，值不会返回去。
+
+        // var num=10;
+        // function fn1() {
+        //    var num=20;
+        //     function fn2() {
+        //         var num=30;
+        //         console.log(num);
+        //     }
+        //     fn2();
+        // }
+        // fn1();//30
+
+    </script>
+
+    <script>
+        //递归函数   没有出口、但有参数的递归函数  5*4*3*2*1=120
+        // function  fn(n) {
+        //     if(n===1){
+        //         return 1;
+        //     }else {
+        //         return n*fn(n-1);
+        //     }
+        // }
+        // fn(5);
+        // console.log(fn(5));
+
+        //递归函数特征
+        // 12345
+        // function fn2(n){
+        //     if(n===1){
+        //         console.log(1);
+        //     }else{
+        //         fn2(n-1);
+        //         console.log(n)
+        //     }
+        // }
+        // fn2(5);
+
+        //53421
+        // function fn1(n) {
+        //     if(n===1){
+        //         console.log(1)
+        //     }else {
+        //         console.log(n);
+        //         fn1(n-1);
+        //     }
+        // }
+        // fn1(5);
+
+        //回调函数
+        // function a() {
+        //     console.log(1);
+        // }
+        // function fun(f) {
+        //     f();
+        //     console.log(f);//此时的f相当于函数a
+        // }
+        // fun(a);
+
+
+        //用回调函数作为参数，callback用于接收回调函数的参数名字，num接收实参5的参数，5为调用回电函数的次数。
+        // function each(callback,num) {
+        //     for(var i=0;i<num;i++){
+        //         callback();
+        //     }
+        // }
+        // each(function(){alert(1)},5);
+
+
+        //闭包
+        // function fun() {
+        //     console.log(num);
+        //     var num=10;
+        //     num++;
+        //     console.log(num);
+        // }
+        // fun();
+        // fun();
+
+
+        //闭包函数的实现
+        // function fn1() {
+        //     var num=10;
+        //     function fn2() {
+        //         num++;
+        //         console.log(num);
+        //     }
+        //     return fn2;
+        // }
+        // fn1();//调用函数，结果不在控制台显示
+        // console.log(fn1());//结果为fn2函数，即fn1相当于fn2
+        // var a=fn1();//将函数fh1赋值给a或者说将fn2赋值给a
+        // console.log(a);//此时的A是一个函数
+        // a();//11     //调用函数a,结果为11，将该数值存到内存中
+        // a();//12     //再次调用a，结果为12，
+        // fn1()();//11
+
+        // fn1()();//11
+
+        //n内置顶层函数
+        // eval("alert(1)");
+
+        //Number
+        // console.log(Number("123"));//123   数值
+        // console.log(Number("abc"));//NAN    字符串
+        // console.log(Number("abc123"));//NAN
+        // console.log(Number("123abc"));//NAN
+        // console.log(Number(null));//0
+        // console.log(Number(""));//0
+        // console.log(Number("-1"));//-1
+        // console.log(Number("0x11"));//十六进制转化结果17
+        // console.log(Number("000111.11"));//111.11
+        // console.log(Number("1.1"))//1.1   小数
+        // console.log(Number(true));//1   布尔
+        // console.log(Number(false));//0
+        // console.log(Number(NaN));//NAN
+        // console.log(Number(undefined));//NAN
+
+
+        //parseInt()函数
+        // console.log(parseInt("123"));//123  数值
+        // console.log(parseInt("abc"));//NAN  字符串
+        // console.log(parseInt("213abc"));//213   数字开头的字符串
+        // console.log(parseInt("abc123"));//NAN   不是数字开头的字符串
+        // console.log(parseInt(null));//NAN
+        // console.log(parseInt("-1"));//-1    负数
+        // console.log(parseInt("0x11"));//17    十六进制
+        // console.log(parseInt("000111"))//111     无意的数字开头的数值
+        // console.log(parseInt("1.1"))//1     小数
+        //parseInt()的第二个参数
+        // console.log(parseInt("11",8));//以8进制解析11 1*8的0次+1*8的1次  结果为9
+
+        //parseFloat()
+        // console.log(parseFloat("123.123"));//123.123
+
+        //String
+        // console.log(String("123"));
+        // console.log(String(true));
+        // console.log(String(""));
+        // console.log(String(null));
+        // console.log(String(NaN));
+        // console.log(String(function (){}));// function (){}       函数
+        // console.log(String({name:"zhangsan"}));// [object Object]        对象
+
+
+        // //Boolean
+        // console.log(Boolean(0));//false
+
+
+        //isNaN()函数
+        //判断n是否为数值，不是就在输入一个值，是的话就直接输出
+        // var  n=prompt("请输入一个数值");
+        // while(isNaN(n)){
+        //     n=prompt("请输入一个数值");
+        // }
+        // console.log(n);
+
+    </script>
+    <style>
+        /*在事件后边调用*/
+        /*.demon{*/
+            /*width: 200px;*/
+            /*height: 200px;*/
+            /*background-color: red;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <!--<div class="demon"></div>-->
+</body>
+<script>
+    // var ele=document.querySelector(".demon");用他来获取demon标签
+    // var ele=document.querySelector(".demon");
+    // ele.onclick=function () {
+    //     alert(3);
+    // }
+</script>
+</html>

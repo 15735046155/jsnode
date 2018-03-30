@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box">
+    <p>123123</p>
+</div>
+<div class="item">
+    ckmvxm
+</div>
+</body>
+<script>
+    let box=document.querySelector(".box");
+    //document.createElement(标签名)
+    let divEle=document.createElement("div");//创建一个div
+    divEle.style.cssText="width:100px;height:100px;background:red";//给div设置css
+    //a.appendChild(b)    将b元素插入到a元素之后
+    box.appendChild(divEle);//将创建好的divEle放入box中
+    let item=document.querySelector(".item");
+    box.appendChild(item);//将页面中的item剪切到box中（页面中已有的元素相当于剪切）
+</script>
+</html>

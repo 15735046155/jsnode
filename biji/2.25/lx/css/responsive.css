@@ -1,0 +1,15 @@
+.row:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+/* 解决浮动元素不能撑开父元素 */
+.container{
+	background-color: red;
+}
+.col-xs-1{
+	width: 8.3333%;
+}
+.col-xs-2{
+	
+}

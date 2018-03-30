@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--//iframe是在一个窗口中打开另一个网页-->
+<iframe src="http://www.baidu.com" frameborder="0"></iframe>
+</body>
+<script>
+    //window对象
+    //属性  screen history location navigator（当前浏览器的信息） document localStorage sessionStorage
+    console.log(window.innerWidth);//浏览器宽
+    console.log(window.innerHeight);//高
+    console.log(window.screenTop);
+    //top属性
+    // window.top可以访问到当前窗口的父窗口的window对象
+    //方法
+    // alert();
+    // prompt();
+    // confirm();//确认
+    // setInterval();
+    // clearInterval();
+    // getComputedStyle();
+    // setTimeout();//延迟，使用方法和setInterval();一样，但是区别是setTimeout()是单纯的延迟
+    // console.log(window.setTimeout(),3000);//单纯的延迟操作，不会像setinterval一样循环执行。
+    // setTimeout(function () {
+    //     alert(1)
+    // },3000)//3秒后弹出1，只会弹出一次
+    // clearTimeout();//清除延迟
+
+    //history对象
+    //属性
+    console.log(history.length);//表示当前浏览器的访问记录是几条
+    console.log(history.state);//
+    //方法   实现页面之间的切换
+    //forward(前进) back(后退) go三个方法来实现跳转
+    history.go(-1);//后退
+    history.go(1);//前进
+    history.go(0);//刷新
+
+</script>
+</html>

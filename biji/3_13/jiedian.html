@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+            margin:0 auto;
+        }
+        .item1{
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            font-size: 20px;
+            color:#fff;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box" id="999" title="aaa">456
+    <!--注释节点-->
+    <div class="item1">1</div>
+    <div class="item1">2</div>
+    <div class="item1">3</div>
+</div>
+</body>
+<script>
+    let item1=document.querySelector(".item1");
+    let box=item1.parentNode;//<div class="box" id="" title="aaa">...</div>
+    let child=box.childNodes;//NodeList(9) [text, comment, text, div.item1, text, div.item1, text, div.item1, text]
+    let firstChild=box.firstChild;//456
+    let lastChild=box.lastChild;//#text
+    let firstElement=box.firstElementChild;//<div class="item1">1</div>
+    let lastElement=box.lastElementChild;//<div class="item1">3</div>
+    let nextnodes=box.nextSibling;//#text
+    let prevnodes=box.previousSibling;
+    let nextElementSibling=box.nextElementSibling;//<script>一对
+    let commment=firstChild.nextSibling;//<!--注释节点-->
+    console.log(prevnodes);
+
+    // console.log("元素节点");
+    // console.log(box.nodeType);//1
+    // console.log(box.nodeName);//DIV
+    // console.log(box.nodeValue);//null
+    //
+    //
+    // console.log("属性节点");
+    // let attrNode=box.attributes[0];//box的第一个属性
+    // // console.log(attrNode);//NamedNodeMap {0: class, 1: id, 2: title, class: class, id: id, title: title, length: 3}
+    // console.log(attrNode.nodeType);//2
+    // console.log(attrNode.nodeName);//class
+    // console.log(attrNode.nodeValue);//box
+    //
+    //
+    // console.log("文本节点");
+    // console.log(firstChild.nodeType);//3
+    // console.log(firstChild.nodeName);//#text
+    // console.log(firstChild.nodeValue);//456
+    //
+    //
+    // console.log("注释节点");
+    // console.log(commment.nodeType);//8
+    // console.log(commment.nodeName);//#comment
+    // console.log(commment.nodeValue);//<!--注释节点-->
+
+    // console.log("文档节点");
+    // console.log(document.nodeType);//9
+    // console.log(document.nodeName);//#document
+    // console.log(document.nodeValue);//null
+
+</script>
+</html>

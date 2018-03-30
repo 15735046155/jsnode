@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+</head>
+<body>
+    <!--<p></p>-->
+    <!--<span></span>-->
+    <!--<div>-->
+        <!--<p></p>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--<p></p>-->
+    <!--</div>-->
+    <section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    </section>
+    <!--<p></p>-->
+    <!--<p></p>-->
+    <!--<p></p>-->
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+//$函数的三个用法
+//1.可以放置一个选择器
+let div = $("div");
+console.log($("p", div));//获取div下的p标签
+console.log($("p"));//获取所有的p标签
+//2.可以放置一个标签
+//创建一个元素
+console.log($("<div></div>"));
+console.log($("<div>"));
+console.log($("<div class=`one`>"));
+//3.可以放置一个回调函数
+$(function () {});
+// $(document).load(function () {
+// });
+// $(document).load(function () {
+//
+// })
+window.onload=function () {}
+
+//外部插入的四个方法   append  appendTo    prepend追加到前边   prependTo
+//append 只表示追加，不是替换    HTML是替换   追加到后边
+//append中可以写HTML片段   原生对象  jQuery对象
+// let span = $("span");
+// $("div").append("<span>");//给div插入span标签
+// $("div").append(span);
+//append 中可以写函数
+// $("div").html(function (index, val) {
+//     return "<p></p>+<h1>" + (index + 1) + "</h1>";
+// });
+// $("div").append(function (index, val) {
+//     return "<p></p>+<h1>" + (index + 1) + "</h1>";
+// })
+//appendTo   prependTo同理
+// $("div").appendTo(span);把div插入到span中
+
+
+
+    //after
+    // $("div").after("<span>");//直接插入html片段
+    // $("div").after("<p>");//把p标签插入到div中
+    // $("div").after($("p"));
+
+    //insert
+    // $("div").insertAfter("p");//把div放到p后
+
+    //
+    $("div").wrap("<section></section>");//每一匹配的元素都加一个包裹
+    $("div").wrapAll("<section></section>");//所有匹配加到一个包裹里
+    $("div").unwrap();//去除包裹
+    $("div").wrapInner("<b></b>");//里边加包裹
+    $("div").replaceWith("<p></p>");//用p把div替换
+    $("div").replaceAll("<p></p>");//用div把p替换
+    $("section").empty();//删除子元素
+    $("section").remove();//删除匹配元素
+    $("section").detach();//删除匹配元素
+    $("section").clone().appendTo("body");//克隆匹配元素,带内容的克隆
+
+
+
+
+
+</script>
+</html>

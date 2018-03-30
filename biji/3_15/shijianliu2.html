@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+        .item{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin: 10px;
+            background-color: yellow;
+        }
+        #botton{
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<input type="botton" value="add" id="botton">
+</body>
+<script>
+    let box=document.querySelector(".box");
+    let item=document.querySelectorAll(".item");
+
+    //46-54  效果是点击每个item时，每个item的背景变黑，并且box的背景也变黑。加上52行代码，效果是点击每个item时，每个item的背景变黑，但box背景不会变黑。
+    // box.onclick=function () {
+    //     this.style.background="#000"
+    // };
+    // item.forEach(function (ele) {
+    //     ele.onclick=function (e) {
+    //         this.style.background="#000";
+    //         e.stopPropagation();//阻止事件流事件
+    //     }
+    // });
+    let add=document.querySelector("input");
+    add.onclick=function () {
+        let newdiv=document.createElement("div");
+        newdiv.className="item";
+        box.appendChild(newdiv);
+    };
+   // 事件委派
+    box.onclick=function (e) {
+        //e.target 目标、直接  事件源最开始触发的元素  可以在控制台找到是哪个元素被触发了。
+        let target=e.target;
+        if(target.className==="item"){
+            target.style.background="#000";
+        }
+    };
+
+</script>
+</html>

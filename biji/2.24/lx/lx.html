@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js练习</title>
+	<link rel="stylesheet" href="lx.css">
+	<style>
+		.one{
+			table-layout: fixed;
+			/*固定每个单元格的大小*/
+			border: 1px solid red;
+			border-collapse: collapse;
+			word-break: break-all;
+			width: 600px;
+			height: 300px;
+		}
+		.one td{
+			border: 1px solid red;	
+		}
+		.two td{
+			width: 200px;
+			height: 50px;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<table width="600" height="300" border="1" align="center" cellspacing="0">
+		<tr align="center">
+			<th>12</th>
+			<th>12</th>
+			<th>12</th>
+			<th>12</th>
+		</tr>
+		<tr>
+			<td>12</td>
+			<td>12</td>
+			<td>12</td>
+			<td>12</td>
+		</tr>
+		<tr>
+			<td>12</td>
+			<td>12</td>
+			<td>12</td>
+			<td>12</td>
+		</tr>
+	</table>
+
+	<table class="one" align="center">
+		<caption>xxx表</caption>
+		<tr>
+			<td colspan="3" align="center">89898989</td>
+		</tr>
+		<tr>
+			<td>89898989</td>
+			<td>
+				<table class="two">
+					<tr>
+						<td>aa</td>
+					</tr>
+					<tr>
+						<td>aa</td>
+					</tr>
+					<tr>
+						<td>aa</td>
+					</tr>
+				</table>
+			</td>
+			<td rowspan="2" align="center">89898989</td>
+		</tr>
+		<tr>
+			<td>89898989</td>
+			<td>89898989</td>
+		</tr>
+	</table>
+
+</body>
+</html>

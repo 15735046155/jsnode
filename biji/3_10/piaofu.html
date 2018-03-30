@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .floating{
+            width: 100px;
+            height: 100px;
+            border:5px solid #000;
+            background-size: cover;
+            background-image: url("01.jpg");
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating"></div>
+</body>
+<script>
+    let floating=document.querySelector(".floating");
+    let browserWidth=window.innerWidth;
+    let browserHeight=window.innerHeight;
+    let divWidth=floating.offsetWidth;
+    let divHeight=floating.offsetHeight;
+    let tops=(browserHeight-divHeight)/2;
+    let lefts=(browserWidth-divWidth)/2;
+    let startx=lefts;
+    let starty=tops;
+    floating.style.left=lefts+"px";
+    floating.style.top=tops+"px";
+    let maxw=browserWidth-divWidth;
+    let maxh=browserHeight-divHeight;
+    let speedX=2;
+    let speedY=2;
+    let t=setInterval(function () {
+        tops+=speedY;
+        lefts+=speedX;
+        if(tops>maxh||tops<0){
+            speedY*=-1;
+        }
+        if(lefts>maxw||lefts<0){
+            speedX*=-1;
+        }
+        floating.style.left=lefts+"px";
+        floating.style.top=tops+"px";
+    },25);
+    //鼠标放上去停止
+    floating.onmouseenter=(function () {
+        clearInterval(t);
+    });
+    //点击回到中间位置
+    floating.onclick=function () {
+        this.style.left=startx+"px";
+        this.style.top=starty+"px";
+        this.style.transition="all 1s";
+        this.style.transform="scale(5,5)";
+    }
+    floating.addEventListener("transitionend",function () {
+       this.onclick=function () {
+           this.style.display="none"
+       }
+    })
+</script>
+</html>

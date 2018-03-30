@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="jquery.easing.1.3.js"></script>
+<script>
+    $(".demo").click(function () {
+        $(this).animate({width:500},1000,"easeOutBack");
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //字符串对象
+        var str="hello world";
+        //属性
+        // console.log(str.length);
+        // console.log(str[3]);//ie8+
+        // console.log(str.constructor);
+        // //方法   本身不收影响
+        console.log(str.charAt(0));//获取下标为0的元素   h
+        console.log(str.charCodeAt(0));//获取指定字符的unicode的码  Unicode是ASCII的父类
+        console.log(str);
+        // //查找   本身不收影响
+        // console.log(str.indexOf("o"));//4  获取指定字符第一次出现所在的下标数
+        // console.log(str.lastIndexOf("o"))//7   获取指定字符最后一次出现所在的下标数
+        // console.log(str.indexOf("world"));//查找单词  w出现的下标
+        // console.log(str);
+        // //替换   本身不收影响
+        // console.log(str.replace("world","web"));//把world替换为web  如果字符串中有两个一样的值，只能替换一个
+        // //转换
+        // console.log(str.split());//把字符串转换为数组["hello world"]
+        // console.log(str.split(""));//["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+        // console.log(str.split("",10));//["h", "e", "l", "l", "o", " ", "w", "o", "r", "l"]只转换前10个，之后的不要了。
+        // console.log(str.split(" ",10));//["hello", "world"]只有两个
+        // console.log(str);
+        // // var str="hello";
+        // // str=str.split("").reverse().join("");
+        // // console.log(str);//olleh
+        //
+        // //分割
+        // console.log(str.slice(1,2));//e   接受参数能为负数
+        // console.log(str.substring(1,3));//el  截取1-3的字符串，接受参数不能为负数
+        // console.log(str.substr(6,2));//wo    指定位置下标为6和长度2
+        //
+        // //大小写转换
+        // console.log(str.toUpperCase());//HELLO WORLD   小写转化为大写
+        // var str1="HELLO WORLD";
+        // console.log(str1.toLowerCase());//hello world
+        // console.log(str1);
+        //
+        // //ES5 trim()  去除字符串两端的空格
+        // var str2="    1  2 3   ";
+        // console.log(str2.trim());//1  2 3
+        //
+        // //es6 includes()  判断字符串中是否存在某个字符
+        // console.log(str.includes("o"));//true
+        //
+        // //string 函数的方法
+        // console.log(String.fromCharCode(97,98,99));//根据ASCII码得到字符串
+
+        //例子
+        // var str1="hello a hello b hello c hello d";
+        // while(str1.includes("hello")){
+        //   str1=str1.replace("hello","hi");
+        // }
+        // console.log(str1);//hi a hi b hi c hi d
+        //
+        //
+        //  var str="background-color z-index color text-align";
+        //  while (str.includes("-")){
+        //      var pos=str.indexOf("-");//获取-所在的索引值
+        //      var charcter=str.charAt(pos+1);//获取-后边小写字母
+        //      var upperCase=charcter.toUpperCase();//把上一步获取到的小写字母转换为大写
+        //      str=str.replace("-"+charcter,upperCase);//替换且把替换后的结果在赋值给原先的字符串
+        //  }
+        //  console.log(str);//backgroundColor zIndex color textAlign
+        //结果为backgroundColor  zIndex  color  textAlign
+    </script>
+</head>
+<body>
+
+</body>
+</html>

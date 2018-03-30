@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .nav{
+            width: 100px;
+            height: 100px;
+            background: #f33;
+            text-align: center;
+            line-height: 100px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right:0;
+            top:0;
+            margin:auto;
+            cursor: pointer;
+            font-size: 18px;
+            color: #fff;
+            border-radius:50%;
+            user-select: none;
+        }
+        .item{
+            width: 100px;
+            height: 100px;
+            background: #33f;
+            border-radius:50%;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            z-index: -1;
+            transition: all 0.5s cubic-bezier(0.61, 0.02, 1, 1);
+        }
+
+    </style>
+</head>
+<body>
+<div class="nav">
+    <span class="menu">menu</span>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+</div>
+</body>
+<script>
+    let menu=document.querySelector(".menu");
+    let items=document.querySelectorAll(".item");
+    const R=200;
+    let n=1;
+    menu.onclick=function () {
+        n++;
+        if(n%2===0){
+            items.forEach(function (ele,index) {
+                let angle=index*Math.PI/3;
+                let x = R * Math.cos(angle);
+                let y = R * Math.sin(angle);
+                ele.style.left=x+"px";
+                ele.style.top=y+"px";
+                ele.style.transform="scale(1,1)";
+            })
+        }else {
+            items.forEach(function (ele, index) {
+                ele.style.left = 0;
+                ele.style.top = 0;
+                ele.style.transform="scale(0.3,0.3)";
+            })
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //相同的属性提炼出来
+        // function Human() {
+        //     this.arms=2;
+        //     this.legs=2;
+        //     this.head=1;
+        // }
+        // var human=new Human();
+        // console.log(human);
+
+
+        //学生
+        //定义一个构造函数
+        // function Student(_id,_className) {
+        //     this.StudentId=_id;
+        //     this.className=_className;
+        // }
+        //实例化构造函数
+        // var stu=new Student(1,"wuiw1711");
+        // console.log(stu);
+
+
+        //老师
+        // function Teacher(_id,_position) {
+        //     this.TeacherId=_id;
+        //     this.position=_position;
+        // }
+        // var teacher=new Teacher(1,"布道师");
+        // console.log(teacher);
+
+
+
+        // Student.prototype=human;
+        // Teacher.prototype=human;
+        // var stu=new Student(1,"wuiw1711");
+        // console.log(stu);
+        // var teacher=new Teacher(1,"布道师");
+        // console.log(teacher);
+
+        // var arr1=[1,2,3];
+        // console.dir(arr1);
+        // console.log(arr1.__proto__);
+        // console.dir(arr1.__proto__);//Array[0]
+        // console.dir(Array.prototype);//Array[0]
+
+        // Object.prototype.say=function () {
+        //     alert("1")
+        // }
+        // Array.prototype.say=function () {
+        //     alert("2")
+        // }
+        // var arr=new Array();
+        // arr.say();
+
+
+        //array
+        // isArray 判断是否为数组
+        var arr2=[1,2,3,[4,5,60],"123",true,{}];//不是数组
+        // for(var i=0;i<arr2.length;i++){
+        //     if(Array.isArray(arr2[i])){
+        //         console.log(arr2[i])//[4,5,60]
+        //     }
+        // }
+
+        //from() 把一个类似于数组的东西转换为一个数组
+       // console.log(arr2);//[1,2,3,[4,5,60],"123",true,{}]
+
+
+        //不懂
+        //of()
+        // var arr=new Array(3,4,5);
+        // var arr=Array.of(3);
+        // console.log(arr);
+
+
+        //es3  ie6\7\8
+        //push方法   在数组的末尾添加元素用的
+        // var arr3=[12,56,64,78,15]
+        // var newarr=[];
+        //
+        // for(var i=0;i<arr3.length;i++){
+        //     if(arr3[i]<60){
+        //         newarr.push(arr[i]);
+        //     }
+        // }
+        // console.log(newarr);
+
+
+        //es3中存在的方法 push pop unshife shift splice join slice concat sort
+        var arr4=[1,2,3];
+        // console.log(arr4.push(4,5));//5：数组长度为5       末尾添加4,5
+        // console.log(arr4);//[1,2,3,4,5]
+        // console.log(arr4.pop());//5：删的数为5    末尾删除一个数
+        // console.log(arr4);//[1,2,3,4]
+        // console.log(arr4.unshift(12,13));//6：数组长度为6    在开始添加12,13
+        // console.log(arr4);//[12,13,1,2,3,4]
+        // console.log(arr4.shift());//12：删的数为12    在开始删除一个数
+        // console.log(arr4);//[13,1,2,3,4]
+        // console.log(arr4.splice(1,2));//在下标为1的地方删除2个数[1,2]
+        // console.log(arr4);//[13,3,4]
+        // console.log(arr4.splice(1,0,11,11,11));//1为在下标为1的地方删除0个数，第二个数之后的数为要添加的数，总的来说，这句代码的意思为在下标为1的地方删除0个，在下标为1的地方添加11,11,11
+        // console.log(arr4.splice(1));//从下标为1开始，之后的全部删除
+
+        //数组本身没有影响  join   slice  concat
+
+        //join将数组处理为字符串
+        // console.log(arr4.join(""));//用空字符串连接   123
+        // console.log(arr4);//[1,2,3]
+
+        //slice  从下标为1开始截取数组
+        // console.log(arr4.slice(1));//[2,3]
+        // console.log(arr4);//[1,2,3]
+        // 从下标为0开始到1截取数组
+        // console.log(arr4.slice(0,1));//[1]
+        // console.log(arr4);//[1,2,3]
+        // 从下标为1开始到-1截取数组  倒着数
+        // console.log(arr4.slice(1,-1));//[2]
+        // console.log(arr4);//[1,2,3]
+
+
+        //concat 拼接
+        // var arr5=["a","b","c"];
+        // console.log(arr4.concat(arr5));//[1, 2, 3, "a", "b", "c"]
+        // console.log(arr5);// ["a", "b", "c"]
+        // console.log(arr4);//[1,2,3]
+
+
+
+
+          var arr6=[1,5,3,4,8,12];
+        //sort 排序用  数组本身会改变   默认排序用第一个字符的ASCII码排序
+        // console.log(arr6.sort());
+        // console.log(arr6);
+        //从小到大排序  sort提供回调函数进行排序
+        // console.log(arr6.sort(function (a,b) {
+        //     if(a>b){
+        //         return 1;
+        //     }else{
+        //         return -1;
+        //     }
+        // }));
+
+        //根据成绩排序
+        // var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:80},{name:"wang",grade:70}]
+        // grade.sort(function (a,b) {
+        //     if(a.grade>b.grade){
+        //         return 1;
+        //     }else{
+        //         return -1;
+        //     }
+        // });
+        // console.table(grade);
+
+
+
+        //es5   ie8+
+        // es5中新增的方法10个
+        var arr=[11,22,33,44,55,66,77,88,99];
+        //  1.  遍历   使用
+        // var newarr=[];
+        // arr.forEach(function (val,index) {
+        //     console.log(val,index);
+        // })
+
+
+        //原理
+
+        // Array.prototype.myForEach=function (callback) {
+        //     for(var i=0;i<this.length;i++){
+        //         callback(this[i],i);
+        //     }
+        // };
+        // arr.myForEach(function (val,index) {
+        //     console.log(val);
+        //     console.log(index);
+        // });
+
+
+
+        //  2. filter方法  用来过滤
+        var arr=[11,22,33,44,55,66,77,88,99];
+        //使用
+        // var newarr=arr.filter(function (val,index) {
+        //     if(val<40){
+        //         return true;
+        //     }
+        // })
+        // console.log(newarr);[11,22,33]
+
+        //原理
+        // Array.prototype.myFilter=function (callback) {
+        //     var newarr=[];
+        //     for(var i=0;i<this.length;i++){
+        //         var r=callback(this[i],[i]);
+        //         if(r){
+        //             newarr.push(this[i]);
+        //         }
+        //     }
+        //     return newarr;
+        // }
+        // var newarr=arr.filter(function (val,index) {
+        //     if(val<40){
+        //         return true;
+        //     }
+        // });
+        // console.log(newarr);
+
+
+        // 3. map方法  映射
+        //使用  例子1/2/3
+        var newarr=arr.map(function (val,index) {
+                return val*val;
+        });
+        // console.log(newarr);//[121, 484, 1089, 1936, 3025, 4356, 5929, 7744, 9801]
+
+
+        // var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:80},{name:"wang",grade:70}]
+        // var grades=grade.map(function (val,index) {
+        //     return val.grade;
+        // })
+        // console.log(grades);//[90, 80, 70]
+
+        //原理
+        // Array.prototype.myMap=function (callback) {
+        //     var newarr=[];
+        //     for(var i=0;i<this.length;i++) {
+        //         newarr.push(callback(this[i], [i]))
+        //     }
+        //     return newarr;
+        // };
+        // var newarr=arr.map(function (val,index) {
+        //     return val*val;
+        // });
+        // console.log(newarr);//[121, 484, 1089, 1936, 3025, 4356, 5929, 7744, 9801]
+
+
+        //判断  some  every
+        //判断是否有数小于60
+        var arr=[56,76,87,45,31,76,56,43,56]
+        var hasfail=arr.some(function (val,index) {
+            if(val<60){
+                return true;
+            }
+        })
+        console.log(hasfail);//ture
+
+        //every   是否每个都大于60
+        var arr=[56,76,87,45,31,76,56,43,56]
+        var success=arr.every(function (val,index) {
+            if(val>=60){
+                return true;
+            }
+        })
+        console.log(success);//false
+
+        //indexOf    lastIndexOf   找位置  如果这个数不存在结果为-1
+        console.log(arr.indexOf(76));//1        76第一次出现的下标为1
+        console.log(arr.lastIndexOf(76));//5      76最后一次出现的下标为5
+        console.log(arr.indexOf(100));//-1        这个数不存在结果为-1
+
+        //reverse   会对数组本身产生影响
+        arr=[1,2,3,4,5]
+        arr.reverse();
+        console.log(arr);//[5, 4, 3, 2, 1]  倒着排列
+
+        //reduce累加器的功能从左往右算       reduceRight从右往左算
+        //val1是上一次运算的结果   val2当前正在遍历的值
+        var sum=arr.reduce(function (val1,val2) {
+            return val1+val2;
+        });
+        console.log(sum)//15
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

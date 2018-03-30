@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demon{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        body{
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+<div class="demon"></div>
+</body>
+<script>
+    let demon=document.querySelector(".demon");
+// function handler() {
+//     console.log(1);
+//     console.log(1);
+//     console.log(1);
+//     console.log(1);
+// }
+// demon.addEventListener("click",function () {
+//     console.log(1);
+//     console.log(1);
+//     console.log(1);
+//     console.log(1);
+// });
+// demon.addEventListener("click",handler);
+// demon.addEventListener("click",function () {
+//     console.log(2);
+//     console.log(2);
+//     console.log(2);
+//     console.log(2);
+// });
+// demon.removeEventListener("click",handler);
+//     demon.onclick=function (e) {
+//         //属性
+//         // console.log(e.screenX);//相对于电脑屏幕的
+//         // console.log(e.screenY);
+//         console.log(e.clientX);//相对于当前浏览器窗口的位置
+//         console.log(e.clientY);
+//         console.log(e.pageX);//相对于当前文档的位置
+//         console.log(e.pageY);
+//         console.log(e.offsetX);//相对于当前的触发事件对象的位置
+//         console.log(e.offsetY);
+//         console.log(e.type);//当前事件的名称  click
+//     };
+    demon.addEventListener("click",function (e) {
+        //属性
+        console.log(e.screenX);//相对于电脑屏幕的
+        console.log(e.screenY);
+        // console.log(e.clientX);//相对于当前浏览器窗口的位置
+        // console.log(e.clientY);
+        // console.log(e.pageX);//相对于当前文档的位置
+        // console.log(e.pageY);
+        // console.log(e.offsetX);//相对于当前的触发事件对象的位置
+        // console.log(e.offsetY);
+        // console.log(e.type);//当前事件的名称  click
+    });
+    // window.onkeydown=function (e) {
+    //     console.log(e.keyCode);//判断每个键的位置
+    //     console.log(e.ctrlKey);//布尔值  判断当前的某个键是否按下
+    //     console.log(e.shiftKey);//布尔值  判断当前的某个键是否按下
+    //     console.log(e.altKey);//布尔值  判断当前的某个键是否按下
+    // }
+</script>
+</html>

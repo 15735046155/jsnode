@@ -1,0 +1,162 @@
+body {
+    background-color: #ccc;
+}
+
+.swiper-container {
+    width: 100vw;
+    height: 30vh;
+}
+
+.swiper-slide {
+    font-size: 30px;
+}
+
+.type {
+    width: 100%;
+    height: 10vh;
+}
+
+.progect, .done {
+    width: 50%;
+    height: 10vh;
+    float: left;
+    text-align: center;
+    line-height: 10vh;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #333;
+}
+
+.progect.active {
+    background-color: #3f3;
+}
+
+.done {
+    background-color: #19fffa;
+}
+
+.container {
+    width: 100vw;
+    height: 50vh;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+    /*滚动条在记录模块中*/
+}
+
+.container ul {
+    width: 100vw;
+    height: auto;
+}
+
+.container ul li {
+    width: 100vw;
+    height: 6vh;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+}
+
+.itemlist li p {
+    width: 60vw;
+    height: 6vh;
+    float: left;
+    background-color: red;
+    line-height: 6vh;
+    white-space: nowrap;
+/* 强制不换行*/
+    text-overflow: ellipsis;
+    padding: 0 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.itemlist li time {
+    width: 30vw;
+    height: 6vh;
+    float: left;
+    background-color: #ff5d19;
+    line-height: 3vh;
+    font-size: 12px;
+    text-align: center;
+}
+
+.itemlist li span {
+    width: 10vw;
+    height: 6vh;
+    float: left;
+    background-color: blue;
+    text-align: center;
+    line-height: 6vh;
+}
+.itemlist li .changestate{
+    width: 20vw;
+    height: 8vh;
+    position: absolute;
+    top: 0;
+    right: -20vw;
+    text-align: center;
+    line-height: 8vh;
+    font-size: 50px;
+}
+.add {
+    width: 100vw;
+    height: 10vh;
+    background-color: #ffc413;
+    text-align: center;
+    line-height: 10vh;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.mask {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.67);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    display: none;
+}
+
+.inputarea {
+    width: 100vw;
+    height: 62vh;
+    transform: translateY(-62vh);
+}
+
+#text {
+    width: 100vw;
+    height: 40vh;
+    border: none;
+    resize: none;
+    padding: 10vw;
+    font-size: 16px;
+    display: block;
+}
+
+.submit {
+    width: 100vw;
+    height: 10vh;
+    background-color: #f13;
+    text-align: center;
+    line-height: 10vh;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.cancel {
+    width: 6vh;
+    height: 6vh;
+    margin: 3vh auto;
+    border: 1px solid #fff;
+    text-align: center;
+    line-height: 6vh;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 50%;
+}
